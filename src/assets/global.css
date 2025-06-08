@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0f6cbf;
+  --color-secondary: #0f47ad;
+  --color-input: #929292;
+  --color-hover-primary: #0b347e;
+}
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+.input_hover:focus ~ span {
+  @apply -top-3  scale-75;
+  transition: top 0.5s ease-in-out, right 0.5s ease-in-out,
+    scale 0.5s ease-in-out;
+}
+
+.input_hover:not(:placeholder-shown) ~ span {
+  @apply -top-3 scale-75;
+  transition: top 0.5s ease-in-out, right 0.5s ease-in-out,
+    scale 0.5s ease-in-out;
+}
