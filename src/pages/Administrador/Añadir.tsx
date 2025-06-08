@@ -1,7 +1,7 @@
+import Navegacion from "../Administrador/components/Navegacion";
+
 export default function Añadir() {
     return (
-        <div>
-            Añadir
-        </div>
+        <Navegacion />
     )
 }

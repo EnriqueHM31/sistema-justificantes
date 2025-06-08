@@ -5,6 +5,9 @@ import Page404 from "./pages/errores/Page404";
 import { Toaster } from "sonner";
 import AdministradorInicio from "./pages/Administrador/Inicio";
 import AdministradorAñadir from "./pages/Administrador/Añadir";
+import AdministradorModificar from "./pages/Administrador/Modificar";
+import AdministradorEliminar from "./pages/Administrador/Eliminar";
+import AdministradorConfiguracion from "./pages/Administrador/Configuracion";
 import "@fontsource/montserrat/400.css";
 import "@fontsource/montserrat/500.css";
 import "@fontsource/montserrat/600.css";
@@ -21,18 +24,20 @@ function App() {
           <Route path="/*" element={<Page404 />} />
           <Route path="/administrador/inicio" element={<AdministradorInicio />} />
           <Route path="/administrador/registrarusuarios" element={<AdministradorAñadir />} />
+          <Route path="/administrador/modificarusuarios" element={<AdministradorModificar />} />
+          <Route path="/administrador/eliminarusuarios" element={<AdministradorEliminar />} />
+          <Route path="/administrador/configuracion" element={<AdministradorConfiguracion />} />
         </Routes>
       </div>
 
       <Toaster
-        position="top-center"
+        position="bottom-right"
         duration={3000}
         theme="light"
         toastOptions={{
           style: {
-            border: '1px solid #fff',
             borderRadius: '20px',
-            background: '#0f6cbf',
+            background: '#0f47ad',
             color: '#fff',
           },
         }}
