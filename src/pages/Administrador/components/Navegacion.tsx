@@ -19,11 +19,12 @@ export default function Navegacion() {
 
     return (
         <nav className="border-gray-200 bg-secondary">
-            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+
+            <div className="max-w-11/12 flex flex-wrap items-center  justify-between  py-4 px-10">
                 <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                     <button
                         type="button"
-                        className="flex text-sm rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 select-none"
+                        className=" text-sm rounded-full md:me-0  select-none flex items-center justify-center"
                         onClick={toggleDropdown}
                     >
                         {
@@ -31,6 +32,9 @@ export default function Navegacion() {
                                 < img className="w-8 h-8 rounded-full" src={user?.imageUrl || iconoUser} alt="avatar" />
                             )
                         }
+                        <svg className="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                        </svg>
                     </button>
 
                     {openDropdown && (
@@ -51,6 +55,7 @@ export default function Navegacion() {
 
                 <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1">
                     <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
+                        <li className="py-2 text-white text-xl">EaD-TecNM-Huatusco</li>
                         {links.map((link, index) => (
                             <li
                                 key={index}
