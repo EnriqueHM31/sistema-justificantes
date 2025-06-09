@@ -5,8 +5,8 @@ export default function Formulario() {
     const { form, handleChange, handleSubmit } = useLogin();
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col items-center gap-6 max-w-2/6">
-            <h1 className="text-3xl font-semibold text-center max-w-3/4">
+        <form onSubmit={handleSubmit} className="flex flex-col items-center gap-6 md:max-w-2/6 max-w-10/12">
+            <h1 className="xl:text-3xl text-2xl font-semibold text-center md:max-w-3/4">
                 Entrar al sistema de justificantes TecNM Huatusco
             </h1>
 
