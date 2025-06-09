@@ -19,7 +19,7 @@ export function useLogin() {
             const role = user.publicMetadata.role
 
             if (role === "Administrador") {
-                window.location.href = "/administrador/inicio";
+                window.location.href = "/administrador/registrarusuarios";
             }
         }
 
@@ -63,7 +63,7 @@ export function useLogin() {
                 await setActive({ session: result.createdSessionId });
 
                 setTimeout(() => {
-                    window.location.href = "/administrador/inicio";
+                    window.location.href = "/administrador/registrarusuarios";
                 }, 2000);
 
             }
