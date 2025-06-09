@@ -12,8 +12,7 @@ interface NavAdministradorState {
 }
 
 const LINKS_ADMINISTRADOR: Link[] = [
-    { name: "Inicio", path: "/administrador/inicio", active: false },
-    { name: "Registrar", path: "/administrador/registrarusuarios", active: false },
+    { name: "Registrar", path: "/administrador/registrarusuarios", active: true },
     { name: "Modificar", path: "/administrador/modificarusuarios", active: false },
     { name: "Eliminar", path: "/administrador/eliminarusuarios", active: false },
     { name: "Configuración", path: "/administrador/configuracion", active: false },
