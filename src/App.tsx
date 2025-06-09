@@ -3,7 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import { Toaster } from "sonner";
 import Login from "./pages/Login";
 import Page404 from "./pages/errores/Page404";
-import Perfil from "./pages/Perfil";
+import Footer from "./Footer";
+import Perfil from "./pages/Administrador/Perfil";
 import AdministradorInicio from "./pages/Administrador/Inicio";
 import AdministradorAñadir from "./pages/Administrador/Añadir";
 import AdministradorModificar from "./pages/Administrador/Modificar";
@@ -21,14 +22,15 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/cambiarcontraseña" element={<CambiarContraseña />} />
-        <Route path="/perfil" element={<Perfil />} />
         <Route path="/*" element={<Page404 />} />
+        <Route path="/administrador/perfil" element={<Perfil />} />
         <Route path="/administrador/inicio" element={<AdministradorInicio />} />
         <Route path="/administrador/registrarusuarios" element={<AdministradorAñadir />} />
         <Route path="/administrador/modificarusuarios" element={<AdministradorModificar />} />
         <Route path="/administrador/eliminarusuarios" element={<AdministradorEliminar />} />
         <Route path="/administrador/configuracion" element={<AdministradorConfiguracion />} />
       </Routes>
+      <Footer />
 
       <Toaster
         position="bottom-right"

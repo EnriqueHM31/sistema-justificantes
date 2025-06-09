@@ -21,7 +21,7 @@ export default function Formulario() {
 
                 <label htmlFor="id_usuario" className="relative">
                     <input type="text" name="id_usuario" id="id_usuario" placeholder=" " className="border border-input rounded-md px-4 py-4 w-100 input_hover text-xl" />
-                    <span className=" font-semibold absolute top-3/12 right-9/12 text-input px-3 bg-white text-xl">Usuario</span>
+                    <span className=" font-semibold absolute top-4 left-5 text-input px-3 bg-white text-xl">Usuario</span>
                 </label>
 
                 <button type="submit" className="bg-primary text-white rounded-md p-2 w-100 font-bold text-xl">Enviar</button>

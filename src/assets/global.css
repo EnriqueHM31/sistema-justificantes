@@ -5,6 +5,7 @@
   --color-secondary: #0f47ad;
   --color-input: #929292;
   --color-hover-primary: #0b347e;
+  --container-laptop: 1250px;
 }
 
 * {
