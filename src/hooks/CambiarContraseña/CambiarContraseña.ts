@@ -7,12 +7,12 @@ interface inputRef {
 }
 
 export function useCambioContraseña() {
-    const [envio, setenvio] = useState(false);
+    const [envio, setEnvio] = useState(false);
     const inputs = useRef<inputRef[]>([]);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setenvio(true);
+        setEnvio(true);
     }
 
 
@@ -63,11 +63,17 @@ export function useCambioContraseña() {
         }
     };
 
+    const handleBack = () => {
+        window.location.href = "/cambiarcontraseña";
+    }
+
     return {
         envio,
         handleSubmit,
         handleInput,
         handleKeyDown,
-        setInputRefs
+        setInputRefs,
+        handleBack
     }
+
 }
