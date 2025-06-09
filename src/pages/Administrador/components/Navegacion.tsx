@@ -35,7 +35,7 @@ export default function Navegacion() {
 
                     {openDropdown && (
                         <div className="relative" id="user-dropdown">
-                            <ul className="absolute right-0 top-10 z-10 shadow bg-white rounded-4xl min-w-50 w-full">
+                            <ul className="absolute right-0 top-10 z-10 shadow bg-white  min-w-50 w-full">
                                 <li>
                                     <a href="/administrador/perfil" className="block px-4 py-2 text-sm text-black hover:bg-hover-primary hover:text-white">Perfil</a>
                                 </li>
