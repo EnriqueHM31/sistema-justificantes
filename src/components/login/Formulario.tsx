@@ -1,81 +1,8 @@
-import { useSignIn } from "@clerk/clerk-react";
-import { useState } from "react";
-import { toast } from "sonner";
-import IconoError from "../../assets/iconos/iconoError";
-import IconoLoading from "../../assets/iconos/IconoLoading";
-import { useAuth } from "@clerk/clerk-react";
+import { useLogin } from "../../hooks/login/UseLogin";
 
 
 export default function Formulario() {
-    const { signIn, setActive } = useSignIn();
-    const { signOut } = useAuth();
-    const [form, setForm] = useState({
-        idUsuario: "",
-        contrasena: "",
-    });
-
-
-    if (signIn) {
-        try {
-            signOut();
-        } catch (err) {
-            console.error(err);
-        }
-        localStorage.clear();
-    }
-
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setForm(prev => ({ ...prev, [name]: value }));
-    };
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-
-
-        const toastId = toast(<IconoLoading text="Iniciando sesión..." />);
-
-
-        if (!form.idUsuario || !form.contrasena) {
-            toast.error("Por favor, completa todos los campos.", {
-                icon: <IconoError />,
-                id: toastId,
-            });
-            return;
-        }
-
-        if (!signIn) {
-            toast.error("El sistema de autenticación no está disponible.", {
-                icon: <IconoError />,
-                id: toastId,
-            });
-            return;
-        }
-
-        try {
-            const result = await signIn.create({
-                identifier: form.idUsuario,
-                password: form.contrasena,
-            });
-
-            if (result.status === "complete") {
-                await setActive({ session: result.createdSessionId });
-
-                setTimeout(() => {
-                    window.location.href = "/administrador/inicio";
-                }, 2000);
-
-            }
-
-        } catch (err) {
-            toast.error("Error al iniciar sesión. Verifica tus credenciales.", {
-                icon: <IconoError />,
-                id: toastId,
-            });
-            console.error(err);
-        }
-    };
+    const { form, handleChange, handleSubmit } = useLogin();
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col items-center gap-6 max-w-2/6">

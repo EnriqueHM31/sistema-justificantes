@@ -1,8 +1,9 @@
-import Login from "./pages/Login";
 import CambiarContraseña from "./pages/CambiarContraseña";
 import { Routes, Route } from "react-router-dom";
-import Page404 from "./pages/errores/Page404";
 import { Toaster } from "sonner";
+import Login from "./pages/Login";
+import Page404 from "./pages/errores/Page404";
+import Perfil from "./pages/Perfil";
 import AdministradorInicio from "./pages/Administrador/Inicio";
 import AdministradorAñadir from "./pages/Administrador/Añadir";
 import AdministradorModificar from "./pages/Administrador/Modificar";
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/cambiarcontraseña" element={<CambiarContraseña />} />
+        <Route path="/perfil" element={<Perfil />} />
         <Route path="/*" element={<Page404 />} />
         <Route path="/administrador/inicio" element={<AdministradorInicio />} />
         <Route path="/administrador/registrarusuarios" element={<AdministradorAñadir />} />

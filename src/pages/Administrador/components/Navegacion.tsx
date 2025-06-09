@@ -1,43 +1,21 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { useNavAdministrador } from "../../../store/NavAdministrador";
+import { useNavAdmin } from "../../../hooks/Navegacion/UseNavAdmin";
 import iconoUser from "../../../assets/iconos/iconoUser.webp";
 import { toast } from "sonner";
-import { useAuth } from "@clerk/clerk-react";
 import IconoLoading from "../../../assets/iconos/IconoLoading";
 
 
 
 export default function Navegacion() {
 
-    const { links, setActiveByPath } = useNavAdministrador();
-    const [openDropdown, setOpenDropdown] = useState(false);
-    const location = useLocation();
-    const { signOut } = useAuth();
+    const { links, openDropdown, toggleDropdown, handleSignOut, user } = useNavAdmin();
 
 
-    const handleSignOut = async () => {
-        try {
-
-            toast(
-                <IconoLoading text="Cerrando sesión..." />,
-            );
-
-            setTimeout(async () => {
-                await signOut();
-                window.location.href = "/";
-            }, 3000);
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-
-    useEffect(() => {
-        setActiveByPath(location.pathname);
-    }, [location.pathname, setActiveByPath]);
-
-    const toggleDropdown = () => setOpenDropdown(!openDropdown);
+    const handleSalir = () => {
+        toast(
+            <IconoLoading text="Cerrando sesión..." />,
+        );
+        handleSignOut();
+    }
 
     return (
         <nav className="border-gray-200 bg-secondary">
@@ -48,17 +26,21 @@ export default function Navegacion() {
                         className="flex text-sm rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 select-none"
                         onClick={toggleDropdown}
                     >
-                        <img className="w-8 h-8 rounded-full" src={iconoUser} alt="user photo" />
+                        {
+                            user?.imageUrl && (
+                                < img className="w-8 h-8 rounded-full" src={user?.imageUrl || iconoUser} alt="avatar" />
+                            )
+                        }
                     </button>
 
                     {openDropdown && (
                         <div className="relative" id="user-dropdown">
                             <ul className="absolute right-0 top-10 z-10 shadow bg-white rounded-4xl min-w-50 w-full">
                                 <li>
-                                    <a href="/administrador/perfil" className="block px-4 py-2 text-sm text-black hover:bg-hover-primary hover:text-white">Perfil</a>
+                                    <a href="/perfil" className="block px-4 py-2 text-sm text-black hover:bg-hover-primary hover:text-white">Perfil</a>
                                 </li>
                                 <li>
-                                    <button className="block px-4 py-2 text-sm text-black hover:bg-hover-primary hover:text-white w-full text-start" type="button" onClick={handleSignOut}>
+                                    <button className="block px-4 py-2 text-sm text-black hover:bg-hover-primary hover:text-white w-full text-start" type="button" onClick={handleSalir}>
                                         Cerrar sesión
                                     </button>
                                 </li>
