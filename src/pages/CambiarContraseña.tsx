@@ -4,7 +4,7 @@ import FondoCambiarContraseña from '../assets/fondos/fondo_cambiar_contraseña.
 export default function CambiarContraseña() {
     return (
         <>
-            <div className="flex flex-col mt-8 min-h-screen">
+            <div className="flex flex-col min-h-dvh p-4">
                 <Formulario />
             </div>
 
