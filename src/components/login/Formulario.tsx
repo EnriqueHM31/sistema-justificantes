@@ -2,19 +2,27 @@ import { useSignIn } from "@clerk/clerk-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import IconoError from "../../assets/iconos/iconoError";
+import IconoLoading from "../../assets/iconos/IconoLoading";
+import { useAuth } from "@clerk/clerk-react";
+
 
 export default function Formulario() {
     const { signIn, setActive } = useSignIn();
-
+    const { signOut } = useAuth();
     const [form, setForm] = useState({
         idUsuario: "",
         contrasena: "",
     });
 
+
     if (signIn) {
+        try {
+            signOut();
+        } catch (err) {
+            console.error(err);
+        }
         localStorage.clear();
     }
-
 
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,9 +33,14 @@ export default function Formulario() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
+
+        const toastId = toast(<IconoLoading text="Iniciando sesión..." />);
+
+
         if (!form.idUsuario || !form.contrasena) {
             toast.error("Por favor, completa todos los campos.", {
                 icon: <IconoError />,
+                id: toastId,
             });
             return;
         }
@@ -35,6 +48,7 @@ export default function Formulario() {
         if (!signIn) {
             toast.error("El sistema de autenticación no está disponible.", {
                 icon: <IconoError />,
+                id: toastId,
             });
             return;
         }
@@ -47,19 +61,24 @@ export default function Formulario() {
 
             if (result.status === "complete") {
                 await setActive({ session: result.createdSessionId });
-                window.location.href = "/administrador/inicio";
+
+                setTimeout(() => {
+                    window.location.href = "/administrador/inicio";
+                }, 2000);
+
             }
 
         } catch (err) {
             toast.error("Error al iniciar sesión. Verifica tus credenciales.", {
                 icon: <IconoError />,
+                id: toastId,
             });
             console.error(err);
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col items-center gap-6">
+        <form onSubmit={handleSubmit} className="flex flex-col items-center gap-6 max-w-2/6">
             <h1 className="text-3xl font-semibold text-center max-w-3/4">
                 Entrar al sistema de justificantes TecNM Huatusco
             </h1>
@@ -69,10 +88,11 @@ export default function Formulario() {
                     type="text"
                     id="idUsuario"
                     name="idUsuario"
+                    autoComplete="username"
                     value={form.idUsuario}
                     onChange={handleChange}
                     placeholder=" "
-                    className="border border-input rounded-md px-3 py-4 w-full input_hover text-xl"
+                    className="border border-input rounded-md px-6 py-4 w-full input_hover text-xl"
                 />
                 <span className="absolute top-4 left-5 bg-white px-3 text-input font-semibold text-xl">
                     Usuario
@@ -84,10 +104,11 @@ export default function Formulario() {
                     type="password"
                     id="contrasena"
                     name="contrasena"
+                    autoComplete="current-password"
                     value={form.contrasena}
                     onChange={handleChange}
                     placeholder=" "
-                    className="border border-input rounded-md px-3 py-4 w-full input_hover text-xl"
+                    className="border border-input rounded-md px-6 py-4 w-full input_hover text-xl"
                 />
                 <span className="absolute top-4 left-5 bg-white px-3 text-input font-semibold text-xl">
                     Contraseña

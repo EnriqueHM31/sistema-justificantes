@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom"; // si usas React Router
+import { useLocation } from "react-router-dom";
 import { useNavAdministrador } from "../../../store/NavAdministrador";
 import iconoUser from "../../../assets/iconos/iconoUser.webp";
 import { toast } from "sonner";
 import { useAuth } from "@clerk/clerk-react";
+import IconoLoading from "../../../assets/iconos/IconoLoading";
+
 
 
 export default function Navegacion() {
@@ -17,18 +19,14 @@ export default function Navegacion() {
     const handleSignOut = async () => {
         try {
 
+            toast(
+                <IconoLoading text="Cerrando sesión..." />,
+            );
 
-
-
-            await signOut();
-
-            localStorage.clear();
-            sessionStorage.clear();
-
-            toast.loading("Cerrando sesión...")
-            setTimeout(() => {
-                window.location.replace("/");
-            }, 2000);
+            setTimeout(async () => {
+                await signOut();
+                window.location.href = "/";
+            }, 3000);
         } catch (error) {
             console.error(error);
         }

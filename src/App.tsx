@@ -17,18 +17,16 @@ function App() {
 
   return (
     <>
-      <div className="min-h-screen">
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/cambiarcontraseña" element={<CambiarContraseña />} />
-          <Route path="/*" element={<Page404 />} />
-          <Route path="/administrador/inicio" element={<AdministradorInicio />} />
-          <Route path="/administrador/registrarusuarios" element={<AdministradorAñadir />} />
-          <Route path="/administrador/modificarusuarios" element={<AdministradorModificar />} />
-          <Route path="/administrador/eliminarusuarios" element={<AdministradorEliminar />} />
-          <Route path="/administrador/configuracion" element={<AdministradorConfiguracion />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/cambiarcontraseña" element={<CambiarContraseña />} />
+        <Route path="/*" element={<Page404 />} />
+        <Route path="/administrador/inicio" element={<AdministradorInicio />} />
+        <Route path="/administrador/registrarusuarios" element={<AdministradorAñadir />} />
+        <Route path="/administrador/modificarusuarios" element={<AdministradorModificar />} />
+        <Route path="/administrador/eliminarusuarios" element={<AdministradorEliminar />} />
+        <Route path="/administrador/configuracion" element={<AdministradorConfiguracion />} />
+      </Routes>
 
       <Toaster
         position="bottom-right"
@@ -36,7 +34,8 @@ function App() {
         theme="light"
         toastOptions={{
           style: {
-            borderRadius: '20px',
+            border: "1px solid #0f47ad",
+            borderRadius: '10px',
             background: '#0f47ad',
             color: '#fff',
           },
