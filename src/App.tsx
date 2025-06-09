@@ -1,5 +1,5 @@
 import CambiarContraseña from "./pages/CambiarContraseña";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { Toaster } from "sonner";
 import Login from "./pages/Login";
 import Page404 from "./pages/errores/Page404";
@@ -17,6 +17,7 @@ import "@fontsource/montserrat/600.css";
 
 function App() {
 
+  const location = useLocation();
   return (
     <>
       <Routes>
@@ -30,7 +31,11 @@ function App() {
         <Route path="/administrador/eliminarusuarios" element={<AdministradorEliminar />} />
         <Route path="/administrador/configuracion" element={<AdministradorConfiguracion />} />
       </Routes>
-      <Footer />
+      {
+        location.pathname !== "/" && (
+          <Footer />
+        )
+      }
 
       <Toaster
         position="bottom-right"
