@@ -17,6 +17,7 @@ import "@fontsource/montserrat/600.css";
 function App() {
 
   const location = useLocation();
+  console.log(location.pathname);
   return (
     <>
       <Routes>
@@ -30,7 +31,11 @@ function App() {
         <Route path="/administrador/configuracion" element={<AdministradorConfiguracion />} />
       </Routes>
 
-      {["/cambiarcontraseña"].includes(location.pathname) && <Footer />}
+      {
+        (location.pathname !== '/' && decodeURIComponent(location.pathname) !== '/cambiarcontraseña') && (
+          <Footer />
+        )
+      }
 
 
 
