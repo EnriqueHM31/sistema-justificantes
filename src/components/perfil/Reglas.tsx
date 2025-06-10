@@ -33,7 +33,7 @@ export default function ReglasContraseña({ contraseñas }: { contraseñas: Cont
     ];
 
     return (
-        <div className="flex flex-col gap-1 w-full max-w-3/4 mt-2">
+        <div className="flex flex-col gap-1 w-full md:max-w-3/4 mt-2">
             {rules.map(({ id, label, test }) => (
                 <label
                     key={id}
