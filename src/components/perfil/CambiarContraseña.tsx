@@ -4,9 +4,11 @@ import ReglasContraseña from "./Reglas";
 import IconoError from "../../assets/iconos/iconoError";
 import IconoCorrecto from "../../assets/iconos/iconoCorrecto";
 import ModalConfirmacion from "./ModalConfirmacion";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 export default function CambiarContraseña() {
-    const { contraseñas, cambiarContraseña, getBorderColor, handleChange, mostrarModal, handleSubmit, handleClickModalOpen } = useCambiarContraseña();
+    const { contraseñas, cambiarContraseña, getBorderColor, handleChange, mostrarModal, handleSubmit, handleClickModalClose, handleClickPasswordNueva, handleClickPasswordConfirmar, passwordVisible } = useCambiarContraseña();
 
     const handleSubmitBoton = (e: React.FormEvent) => {
 
@@ -41,7 +43,7 @@ export default function CambiarContraseña() {
 
                 <label htmlFor="contraseñanueva" className="relative w-full max-w-3/4">
                     <input
-                        type="password"
+                        type={passwordVisible.nueva ? "text" : "password"}
                         id="contraseñanueva"
                         name="nueva"
                         onChange={handleChange}
@@ -49,6 +51,17 @@ export default function CambiarContraseña() {
                         className={`border ${getBorderColor("nueva")} rounded-md px-6 py-4 w-full input_hover text-xl`}
                         placeholder=" "
                     />
+                    <div className="bg-primary flex items-center p-3 justify-center absolute top-4 right-5 rounded-full w-8 h-8 ">
+                        <button type="button" onClick={handleClickPasswordNueva} >
+                            {
+                                passwordVisible.nueva ? (
+                                    <VisibilityOffIcon amplitude={1} className="w-4 h-4" style={{ color: "#fff" }} />
+                                ) : (
+                                    <VisibilityIcon amplitude={1} className="w-4 h-4" style={{ color: "#fff" }} />
+                                )
+                            }
+                        </button>
+                    </div>
                     <span className="absolute top-4 left-5 bg-white px-3 text-input font-semibold text-xl">
                         Nueva contraseña
                     </span>
@@ -57,7 +70,7 @@ export default function CambiarContraseña() {
 
                 <label htmlFor="confirmar" className="relative w-full max-w-3/4">
                     <input
-                        type="password"
+                        type={passwordVisible.confirmar ? "text" : "password"}
                         id="confirmar"
                         name="confirmar"
                         onChange={handleChange}
@@ -65,6 +78,17 @@ export default function CambiarContraseña() {
                         className={`border ${getBorderColor("confirmar")} rounded-md px-6 py-4 w-full input_hover text-xl`}
                         placeholder=" "
                     />
+                    <div className="bg-primary flex items-center p-3 justify-center absolute top-4 right-5 rounded-full w-8 h-8 ">
+                        <button type="button" onClick={handleClickPasswordConfirmar} >
+                            {
+                                passwordVisible.confirmar ? (
+                                    <VisibilityOffIcon amplitude={1} className="w-4 h-4" style={{ color: "#fff" }} />
+                                ) : (
+                                    <VisibilityIcon amplitude={1} className="w-4 h-4" style={{ color: "#fff" }} />
+                                )
+                            }
+                        </button>
+                    </div>
                     <span className="absolute top-4 left-5 bg-white px-3 text-input font-semibold text-xl">
                         Confirmar contraseña
                     </span>
@@ -79,7 +103,7 @@ export default function CambiarContraseña() {
             </form>
 
             {mostrarModal && (
-                <ModalConfirmacion handleClickModalOpen={handleClickModalOpen} confirmarCambio={confirmarCambio} />
+                <ModalConfirmacion handleClickModalClose={handleClickModalClose} confirmarCambio={confirmarCambio} />
             )
             }
         </>
