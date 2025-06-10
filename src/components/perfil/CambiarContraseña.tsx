@@ -38,10 +38,10 @@ export default function CambiarContraseña() {
 
     return (
         <>
-            <form onSubmit={handleSubmitBoton} className="flex flex-col items-center justify-center w-full h-full gap-4 relative ">
-                <h2 className="font-extrabold text-3xl">Cambiar contraseña</h2>
+            <form onSubmit={handleSubmitBoton} className="flex flex-col items-center justify-center w-full h-full gap-4 relative mt-10 md:mt-0 min-h-[50dvh] ">
+                <h2 className="font-extrabold text-lg xl:text-3xl">Cambiar contraseña</h2>
 
-                <label htmlFor="contraseñanueva" className="relative w-full max-w-3/4">
+                <label htmlFor="contraseñanueva" className="relative w-full md:md:max-w-3/4">
                     <input
                         type={passwordVisible.nueva ? "text" : "password"}
                         id="contraseñanueva"
@@ -62,13 +62,13 @@ export default function CambiarContraseña() {
                             }
                         </button>
                     </div>
-                    <span className="absolute top-4 left-5 bg-white px-3 text-input font-semibold text-xl">
+                    <span className="absolute xl:top-4 top-6 left-5 bg-white px-3 text-input font-semibold text-xs md:text-xl">
                         Nueva contraseña
                     </span>
 
                 </label>
 
-                <label htmlFor="confirmar" className="relative w-full max-w-3/4">
+                <label htmlFor="confirmar" className="relative w-full md:max-w-3/4">
                     <input
                         type={passwordVisible.confirmar ? "text" : "password"}
                         id="confirmar"
@@ -89,7 +89,7 @@ export default function CambiarContraseña() {
                             }
                         </button>
                     </div>
-                    <span className="absolute top-4 left-5 bg-white px-3 text-input font-semibold text-xl">
+                    <span className="absolute top-6 xl:top-4 left-5 bg-white px-3 text-input font-semibold text-xs md:text-xl">
                         Confirmar contraseña
                     </span>
 
@@ -97,7 +97,7 @@ export default function CambiarContraseña() {
 
                 <ReglasContraseña contraseñas={contraseñas} />
 
-                <button type="submit" className="bg-primary text-white rounded-md py-2 px-7 max-w-3/4 w-full font-bold text-xl">
+                <button type="submit" className="bg-primary text-white rounded-md py-2 px-7 md:max-w-3/4 w-full font-bold text-xl">
                     Cambio
                 </button>
             </form>
