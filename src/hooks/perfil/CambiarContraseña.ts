@@ -5,12 +5,23 @@ export function useCambiarContraseña() {
     const { user } = useUser();
     const [contraseñas, setContraseñas] = useState({ nueva: "", confirmar: "" });
     const [mostrarModal, setMostrarModal] = useState(false);
-
+    const [passwordVisible, setPasswordVisible] = useState({
+        nueva: false,
+        confirmar: false
+    });
     const contraseñaValida = (contraseña: string) =>
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(contraseña);
 
     const coincide = contraseñas.nueva === contraseñas.confirmar;
     const esValida = contraseñaValida(contraseñas.nueva);
+
+    const handleClickPasswordNueva = () => {
+        setPasswordVisible((prev) => ({ ...prev, nueva: !prev.nueva }));
+    }
+    const handleClickPasswordConfirmar = () => {
+        setPasswordVisible((prev) => ({ ...prev, confirmar: !prev.confirmar }));
+    }
+
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -24,7 +35,7 @@ export function useCambiarContraseña() {
         }
 
         setMostrarModal(true);
-        return { sucess: true, message: "" };
+        return { success: true };
     };
 
 
@@ -56,8 +67,9 @@ export function useCambiarContraseña() {
     const cambiarContraseña = async (actual: string, nueva: string) => {
         if (!user) throw new Error("Usuario no autenticado");
 
+
         try {
-            console.log("cambiarContraseña", actual, nueva);
+            console.log("cambiando contraseña", actual, nueva);
             return true
         } catch (error) {
             console.error("Error al cambiar la contraseña:", error);
@@ -69,9 +81,9 @@ export function useCambiarContraseña() {
         }
     };
 
-    const handleClickModalOpen = () => {
-        setMostrarModal(true);
+    const handleClickModalClose = () => {
+        setMostrarModal(false);
     };
 
-    return { cambiarContraseña, getBorderColor, handleChange, mostrarModal, handleSubmit, contraseñas, handleClickModalOpen };
+    return { cambiarContraseña, getBorderColor, handleChange, mostrarModal, handleSubmit, contraseñas, handleClickModalClose, handleClickPasswordNueva, handleClickPasswordConfirmar, passwordVisible };
 }
