@@ -3,7 +3,7 @@ import { toast } from "sonner";
 import ReglasContraseña from "./Reglas";
 import IconoError from "../../assets/iconos/iconoError";
 import IconoCorrecto from "../../assets/iconos/iconoCorrecto";
-import ModalConfirmacion from "./ModalConfirmacion";
+import ModalConfirmacion from "../generales/ModalConfirmacion";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
@@ -103,7 +103,7 @@ export default function CambiarContraseña() {
             </form>
 
             {mostrarModal && (
-                <ModalConfirmacion handleClickModalClose={handleClickModalClose} confirmarCambio={confirmarCambio} />
+                <ModalConfirmacion title="¿Realmente quieres cambiar la contraseña?" message="" handleClickModalClose={handleClickModalClose} confirmarCambio={confirmarCambio} />
             )
             }
         </>
