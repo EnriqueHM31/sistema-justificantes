@@ -1,4 +1,4 @@
-export default function ModalConfirmacion({ handleClickModalOpen, confirmarCambio }: { handleClickModalOpen: () => void, confirmarCambio: () => void }) {
+export default function ModalConfirmacion({ handleClickModalClose, confirmarCambio }: { handleClickModalClose: () => void, confirmarCambio: () => void }) {
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
             <div className="bg-white p-6 rounded-lg shadow-md text-center max-w-md">
@@ -11,7 +11,7 @@ export default function ModalConfirmacion({ handleClickModalOpen, confirmarCambi
                         Confirmar
                     </button>
                     <button
-                        onClick={handleClickModalOpen}
+                        onClick={handleClickModalClose}
                         className="bg-red-600 text-white px-4 py-2 rounded-md"
                     >
                         Cancelar
