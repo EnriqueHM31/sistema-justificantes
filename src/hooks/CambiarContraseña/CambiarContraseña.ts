@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 interface inputRef {
     value?: string;
@@ -9,10 +11,23 @@ interface inputRef {
 export function useCambioContraseña() {
     const [envio, setEnvio] = useState(false);
     const inputs = useRef<inputRef[]>([]);
+    const navigate = useNavigate();
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const form = e.target as HTMLFormElement;
+        const email = (form.elements.namedItem("email_institucional") as HTMLInputElement)?.value.trim();
+
+        if (!email) {
+            return { success: false, message: "Ingrese el correo institucional" };
+        }
+
         setEnvio(true);
+        return { success: true, message: "" };
+    };
+
+    const handleNavigate = () => {
+        navigate("/");
     }
 
 
@@ -73,7 +88,8 @@ export function useCambioContraseña() {
         handleInput,
         handleKeyDown,
         setInputRefs,
-        handleBack
+        handleBack,
+        handleNavigate
     }
 
 }
