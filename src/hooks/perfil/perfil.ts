@@ -12,6 +12,12 @@ export function usePerfil() {
         cambiarTitulo("Perfil - Administrador");
     }, []);
 
+    const handleStart = () => {
+        if (openFoto && openContraseña) return;
+        setOpenFoto(false);
+        setOpenContraseña(false);
+    }
+
     const handleFoto = () => {
         if (openContraseña) {
             setOpenContraseña(false);
@@ -38,6 +44,7 @@ export function usePerfil() {
         openContraseña,
         handleFoto,
         handleContraseña,
+        handleStart,
         cargando,
         role
     }
