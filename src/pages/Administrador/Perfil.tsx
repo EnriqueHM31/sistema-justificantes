@@ -6,52 +6,65 @@ import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import CambiarContraseña from "../../components/perfil/CambiarContraseña";
 import { usePerfil } from "../../hooks/perfil/perfil";
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function Perfil() {
-    const { user, openFoto, openContraseña, handleFoto, handleContraseña, cargando, role } = usePerfil();
+    const { user, openFoto, openContraseña, handleFoto, handleContraseña, cargando, role, handleStart } = usePerfil();
+
+    console.log(openFoto, openContraseña);
 
     return (
-        <div className="grid grid-rows-[auto_1fr] h-[90vh] overflow-hidden">
+        <div className="grid grid-rows-[auto_1fr] md:h-screen overflow-hidden">
             <NavegacionAdministrador />
 
 
             {cargando ? (
-                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', width: '100%', flex: "1" }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', width: '100%', flex: "1", height: "100vh" }}>
                     <CircularProgress size={100} color="info" />
                 </Box>
 
             ) : (
-                <section className="flex items-center justify-center w-full max-w-laptop mx-auto">
+                <section className="flex flex-col md:flex-row items-center justify-center w-full max-w-laptop mx-auto p-5 gap-6 md:gap-10 py-10 ">
                     {/* Columna izquierda */}
-                    <article className="flex flex-col gap-6 flex-1 items-start max-w-[800px]">
-                        <h2 className="text-3xl text-secondary font-bold">Detalles del usuario</h2>
-                        <div className="relative">
+                    <article className="flex flex-col gap-6 flex-1 w-full items-center xl:items-start md:max-w-[800px]">
+                        <h2 className="text-2xl md:text-3xl text-secondary font-bold">Detalles del usuario</h2>
+                        <button type="button" className="relative" onClick={handleFoto}>
                             <img
                                 src={user?.imageUrl || iconoUser}
                                 alt="avatar"
                                 className="w-32 h-32 rounded-full"
                             />
-                            <button
+                            <div
                                 className="absolute top-8/12 right-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white border border-white"
-                                onClick={handleFoto}
+
                             >
                                 <img src={iconoCamara} alt="camara" className="w-4 h-4" />
-                            </button>
-                        </div>
+                            </div>
+                        </button>
 
-                        <h2 className="text-3xl font-semibold text-center">{user?.fullName}</h2>
-                        <p className="text-xl font-semibold text-center">
+                        <h2 className="text-md md:text-3xl font-semibold text-start w-full">
+                            {user?.fullName}
+                        </h2>
+                        <p className="text-sm md:text-xl font-semibold text-start w-full">
                             {user?.emailAddresses[0].emailAddress}
                         </p>
-                        <p className="text-xl font-semibold text-center">{role}</p>
+                        <p className="text-sm md:text-xl font-semibold text-start w-full">{role}</p>
 
-                        <button className="bg-secondary text-white rounded-md px-4 py-2 w-fit max-w-md font-bold text-xl" onClick={handleContraseña}>
+                        <button className="bg-secondary text-white rounded-md px-4 py-2 w-full md:w-fit md:max-w-md font-bold text-md md:text-xl " onClick={handleContraseña}>
                             Cambiar contraseña
                         </button>
                     </article>
 
                     {/* Columna derecha */}
-                    <div className="flex justify-center flex-1 border border-dashed border-gray-500 my-5 h-11/12 p-5">
+                    <div className="relative flex justify-center items-center not-first-of-type: flex-1 border h-fullborder-dashed border-gray-500 w-full md:min-h-11/12 max-h-full md:h-fit h-full p-5 xl:mb-0 mb-4">
+                        {
+                            (openFoto || openContraseña) && (
+                                <button className="absolute top-5 right-5 transform rounded-full bg-primary text-white p-1 md:p-2 w-8 h-8 flex items-center justify-center md:max-w-md font-bold text-xl z-20 " type="button" onClick={handleStart}>
+                                    <CloseIcon style={{ width: "20px", height: "20px" }} />
+                                </button>
+                            )
+                        }
+
                         {
                             openFoto ? (
                                 <CambiarFoto />
