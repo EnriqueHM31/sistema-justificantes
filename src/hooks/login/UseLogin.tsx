@@ -12,6 +12,11 @@ export function useLogin() {
         idUsuario: "",
         contrasena: "",
     });
+    const [showPassword, setShowPassword] = useState(false);
+
+    const handleClickPassword = () => {
+        setShowPassword(!showPassword);
+    }
 
     if (signIn) {
         if (user) {
@@ -82,5 +87,7 @@ export function useLogin() {
         form,
         handleChange,
         handleSubmit,
+        handleClickPassword,
+        showPassword
     };
 }
