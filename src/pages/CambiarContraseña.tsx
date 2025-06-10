@@ -1,10 +1,10 @@
 import Formulario from "../components/recuperarContraseña/Formulario"
-import FondoCambiarContraseña from '../assets/fondos/fondo_cambiar_contraseña.webp';
+import FondoCambiarContraseña from '../assets/fondos/fondo_cambiar_contraseña.png';
 
 export default function CambiarContraseña() {
     return (
         <>
-            <div className="flex flex-col min-h-dvh p-4">
+            <div className="flex flex-col min-h-dvh p-4 items-center md:justify-start">
                 <Formulario />
             </div>
 
