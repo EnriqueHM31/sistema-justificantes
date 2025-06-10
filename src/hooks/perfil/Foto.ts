@@ -17,10 +17,6 @@ export function useFoto() {
         }
     };
 
-    const handleAntes = () => {
-        setPreview(null);
-        setFile(null);
-    };
 
     type tipo = typeof user.user;
 
@@ -38,6 +34,8 @@ export function useFoto() {
         try {
             await user.setProfileImage({ file });
             onSuccessToast();
+            setFile(null);
+            setPreview(null);
         } catch (error) {
             console.error("Error al subir la foto:", error);
             onErrorToast("Hubo un error al actualizar la foto");
@@ -48,7 +46,6 @@ export function useFoto() {
         preview,
         file,
         handleImageChange,
-        handleAntes,
         handleSubmit,
     };
 }
