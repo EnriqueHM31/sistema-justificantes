@@ -78,9 +78,6 @@ export function useCambioContraseña() {
         }
     };
 
-    const handleBack = () => {
-        window.location.href = "/cambiarcontraseña";
-    }
 
     return {
         envio,
@@ -88,7 +85,6 @@ export function useCambioContraseña() {
         handleInput,
         handleKeyDown,
         setInputRefs,
-        handleBack,
         handleNavigate
     }
 
