@@ -6,7 +6,7 @@ import IconoError from "../../assets/iconos/iconoError";
 
 export default function Formulario() {
 
-    const { envio, handleSubmit, handleInput, handleKeyDown, setInputRefs, handleBack, handleNavigate } = useCambioContraseña();
+    const { envio, handleSubmit, handleInput, handleKeyDown, setInputRefs, handleNavigate } = useCambioContraseña();
 
     const handleSubmitEnvio = (e: React.FormEvent<HTMLFormElement>) => {
         const { success, message } = handleSubmit(e);
@@ -26,9 +26,9 @@ export default function Formulario() {
     return (
         !envio ? (
             <form className="flex flex-col items-center mt-15 md:max-w-2/6 w-full mx-auto justify-center gap-6" onSubmit={handleSubmitEnvio} >
-                <div className="absolute top-4 left-4">
-                    <button className="bg-primary text-white rounded-full flex items-center justify-center p-2 w-full font-bold text-xl" onClick={handleNavigate} type="button">
-                        <ArrowBackOutlinedIcon style={{ color: "#fff", fontWeight: "bold" }} />
+                <div className="absolute top-4 left-4 md:top-8 md:left-16">
+                    <button className="bg-white text-white rounded-full flex items-center justify-center p-2 w-full font-bold text-xl" onClick={handleNavigate} type="button">
+                        <ArrowBackOutlinedIcon style={{ color: "#48e", fontWeight: "bold" }} />
                     </button>
                 </div>
 
@@ -44,9 +44,9 @@ export default function Formulario() {
         ) : (
             <form className="flex flex-col items-center justify-center gap-6 mt-15 p-5 md:max-w-1/2" onSubmit={handleSubmit} >
 
-                <div className="absolute top-4 left-4">
-                    <button className="bg-primary rounded-full text-white flex items-center justify-center p-2 w-full font-bold text-xl" onClick={handleBack} type="button">
-                        <ArrowBackOutlinedIcon style={{ color: "#fff", fontWeight: "bold" }} />
+                <div className="absolute top-4 left-4 md:top-8 md:left-16">
+                    <button className="bg-white text-white rounded-full flex items-center justify-center p-2 w-full font-bold text-xl" onClick={handleNavigate} type="button">
+                        <ArrowBackOutlinedIcon style={{ color: "#48e", fontWeight: "bold" }} />
                     </button>
                 </div>
 
