@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { type formDataRegistroAdminProps } from "../../types";
+import { useRef, useState } from "react";
+import { type UsuarioJefeFile } from "../../types";
 import { capitalizarNombre, generarCorreoJefeCarrera } from "../../assets/ts/Administrador/Registrar";
 import { toast } from "sonner";
 
 export function useRegistrar() {
-    const [formData, setFormData] = useState<formDataRegistroAdminProps>({
+    const [formData, setFormData] = useState<UsuarioJefeFile>({
         clave_usuario: "",
         nombre_usuario: "",
         apellidos_usuario: "",
@@ -20,21 +20,49 @@ export function useRegistrar() {
         apellidos_usuario: null,
         correo_usuario: null,
     });
-    const [mostrarModal, setMostrarModal] = useState(false);
+    const [mostrarModal, setMostrarModal] = useState({
+        registrar: false,
+        confirmar_registro: false,
+        documento_csv: false,
+        confirmar_documento_csv: false
+    });
+
+    const inputFileRef = useRef<HTMLInputElement>(null);
+    const [datosArchivo, setDatosArchivo] = useState<string[][]>([]);
+
+    const handleClear = () => {
+        setDatosArchivo([]);
+        if (inputFileRef.current) {
+            inputFileRef.current.value = "";
+        }
+    };
 
 
-    const handleModalConfirmacion = () => {
+    const handleModalConfirmacionRegistro = () => {
 
         if (!formData.clave_usuario || !formData.nombre_usuario || !formData.apellidos_usuario || !formData.correo_usuario || !formData.carrera) {
             return toast.error("Los campos no pueden estar vacíos")
         }
 
-        setMostrarModal(true);
+        setMostrarModal(prev => ({ ...prev, registrar: true }));
     }
 
-    const handleModalCancelar = () => {
-        setMostrarModal(false);
+
+    const handleModalCancelarRegistro = () => {
+        setMostrarModal(prev => ({ ...prev, registrar: false }));
     }
+
+    const handleModalConfirmacionDocumento = () => {
+        setMostrarModal(prev => ({ ...prev, documento_csv: true }));
+    }
+
+    const handleModalCancelarDocumento = () => {
+        setMostrarModal(prev => ({ ...prev, documento_csv: false }));
+    }
+
+    const handleBDDocumentoCSV = () => {
+        setMostrarModal(prev => ({ ...prev, documento_csv: false }));
+    };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, pattern } = e.target;
@@ -88,7 +116,15 @@ export function useRegistrar() {
         inputValidity,
         capitalizarNombre,
         mostrarModal,
-        handleModalConfirmacion,
-        handleModalCancelar
+        handleModalConfirmacionRegistro,
+        handleModalCancelarRegistro,
+        handleModalConfirmacionDocumento,
+        handleModalCancelarDocumento,
+        handleBDDocumentoCSV,
+        datosArchivo,
+        handleClear,
+        inputFileRef,
+        setDatosArchivo
+
     }
 }
