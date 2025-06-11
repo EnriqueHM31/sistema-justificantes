@@ -10,7 +10,7 @@ export default function ModalConfirmacion({ title, message, handleClickModalClos
 
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-60">
             <div className="bg-white p-6 rounded-lg shadow-md text-center w-3/4 md:w-full  md:max-w-md">
                 <h3 className="text-sm md:text-xl font-semibold mb-4">{title}</h3>
                 {
