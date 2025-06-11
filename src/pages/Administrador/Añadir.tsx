@@ -1,44 +1,29 @@
-import Select from "./components/Select";
 import Navegacion from "../Administrador/components/Navegacion";
 import InputFileUpload from "./components/FileCSV";
 import Previsualizacion from "./components/Previsualizacion";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import WarningOutlinedIcon from "@mui/icons-material/WarningOutlined";
-import { formulario, items } from "../../assets/ts/Administrador/Registrar";
-import { type UsuarioJefe } from "../../types";
-import { useRegistrar } from "../../hooks/Administrador/useRegistrar";
 import ModalConfirmacion from "../../components/generales/ModalConfirmacion";
 import TablaPrevisualizacion from "./components/TablaRegistro";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import { useModales } from "../../hooks/Administrador/useModales";
+import { useFormularioJefe } from "../../hooks/Administrador/useFormularioJefe";
+import { useArchivoCSV } from "../../hooks/Administrador/useDocumentoCSV";
+import FormularioJefe from "./components/Formulario";
 
 export default function Añadir() {
-    const {
-        formData,
-        inputValidity,
-        mostrarModal,
-        datosArchivo,
-        inputFileRef,
-        handleInputChange,
-        handleCarreraChange,
-        capitalizarNombre,
-        handleModalCancelarRegistro,
-        handleModalConfirmacionRegistro,
-        handleModalCancelarDocumento,
-        handleModalConfirmacionDocumento,
-        handleBDDocumentoCSV,
-        handleClear,
-        setDatosArchivo,
-    } = useRegistrar();
+
+    const { formData, inputValidity, capitalizarNombre, handleInputChange, handleCarreraChange } = useFormularioJefe();
+    const { datosArchivo, inputFileRef, handleClear, setDatosArchivo } = useArchivoCSV();
+    const { handleModalConfirmacionRegistro, handleModalCancelarRegistro, handleModalConfirmacionDocumento, handleModalCancelarDocumento, handleBDDocumentoCSV, mostrarModalRegistrar } = useModales();
 
 
     return (
         <>
-            {mostrarModal.registrar && (
+            {mostrarModalRegistrar.registrar && (
                 <ModalConfirmacion
                     title="¿Realmente quieres registrar el usuario?"
                     message="Esta acción no se puede deshacer"
                     handleClickModalClose={handleModalCancelarRegistro}
-                    confirmarCambio={handleModalConfirmacionRegistro}
+                    confirmarCambio={() => handleModalConfirmacionRegistro({ formData })}
                 />
             )}
 
@@ -54,63 +39,7 @@ export default function Añadir() {
                         />
                     </div>
 
-                    <form className="flex flex-col items-center justify-center gap-6 w-full mx-auto">
-                        {formulario.map(({ id, label, type, pattern, required }) => (
-                            <label key={id} className="relative w-full flex flex-col gap-3">
-                                <span className="text-white px-4 py-2 rounded-lg min-w-2/5 w-fit text-xs bg-secondary font-bold">
-                                    {label}
-                                </span>
-
-                                <div className="relative w-full">
-                                    <input
-                                        type={type}
-                                        name={id}
-                                        value={formData[id as keyof UsuarioJefe] as string}
-                                        required={required}
-                                        pattern={pattern}
-                                        placeholder={label}
-                                        onChange={handleInputChange}
-                                        className={`border font-bold rounded-md p-4 w-full input_hover text-sm pr-10
-                                            ${inputValidity[id] === true
-                                                ? "border-green-500 outline-green-500"
-                                                : ""
-                                            }
-                                            ${inputValidity[id] === false
-                                                ? "border-red-500 outline-red-500"
-                                                : ""
-                                            }
-                                        `}
-                                    />
-                                    {inputValidity[id] === true && (
-                                        <CheckCircleIcon className="absolute right-3 top-1/2 -translate-y-1/2 text-green-500" />
-                                    )}
-                                    {inputValidity[id] === false && (
-                                        <WarningOutlinedIcon className="absolute right-3 top-1/2 -translate-y-1/2 text-red-500" />
-                                    )}
-                                </div>
-                            </label>
-                        ))}
-
-                        <label className="relative w-full flex flex-col gap-3">
-                            <span className="text-white px-4 py-2 rounded-lg min-w-2/5 w-fit text-xs bg-secondary font-bold">
-                                Cargo del usuario
-                            </span>
-                            <input
-                                type="text"
-                                name="cargo_usuario"
-                                value="Jefe de Carrera"
-                                disabled
-                                className="border font-bold border-input rounded-md p-4 w-full input_hover text-sm select-none"
-                            />
-                        </label>
-
-                        <label className="relative w-full flex flex-col gap-3">
-                            <span className="text-white px-4 py-2 rounded-lg min-w-2/5 w-fit text-xs bg-secondary font-bold">
-                                Carrera que dirigirá
-                            </span>
-                            <Select items={items} handleChange={handleCarreraChange} />
-                        </label>
-                    </form>
+                    <FormularioJefe formData={formData} handleInputChange={handleInputChange} handleCarreraChange={handleCarreraChange} inputValidity={inputValidity} />
                 </div>
 
                 <div className="flex-3 relative overflow-x-auto flex gap-4 flex-col">
@@ -135,12 +64,12 @@ export default function Añadir() {
                             >
                                 Registrar a todos los usuarios
                             </button>
-                            <TablaPrevisualizacion datos={datosArchivo} handleBDDocumentoCSV={handleBDDocumentoCSV} mostrarModal={mostrarModal} handleModalCancelarDocumento={handleModalCancelarDocumento} />
+                            <TablaPrevisualizacion datos={datosArchivo} handleBDDocumentoCSV={handleBDDocumentoCSV} mostrarModal={mostrarModalRegistrar} handleModalCancelarDocumento={handleModalCancelarDocumento} />
                         </>
                     ) : (
                         <Previsualizacion
                             usuario={formData}
-                            onConfirmar={handleModalConfirmacionRegistro}
+                            onConfirmar={() => handleModalConfirmacionRegistro({ formData })}
                             capitalizarNombre={capitalizarNombre}
                         />
                     )}
