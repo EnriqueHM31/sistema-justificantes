@@ -1,53 +1,26 @@
-interface Usuario {
-    clave_usuario: string;
-    nombre_usuario: string;
-    apellidos_usuario: string;
-    cargo_usuario: string;
-    correo_usuario: string;
-    carrera: string;
-}
+import { type PrevisualizacionRegistroUnicoProps } from "../../../types";
 
-interface PrevisualizacionProps {
-    usuario: Usuario;
-    onConfirmar: () => void;
-    capitalizarNombre: (nombre: string) => string;
-}
+export default function VistaPreviaUsuar({ usuario, onConfirmar, capitalizarNombre }: PrevisualizacionRegistroUnicoProps) {
 
-export default function VistaPreviaUsuar({ usuario, onConfirmar, capitalizarNombre }: PrevisualizacionProps) {
-
+    const campos = [
+        { etiqueta: "Clave", valor: usuario.clave_usuario },
+        { etiqueta: "Nombre", valor: capitalizarNombre(usuario.nombre_usuario) },
+        { etiqueta: "Apellidos", valor: capitalizarNombre(usuario.apellidos_usuario) },
+        { etiqueta: "Cargo", valor: usuario.cargo_usuario },
+        { etiqueta: "Correo", valor: usuario.correo_usuario },
+        { etiqueta: "Carrera", valor: usuario.carrera },
+    ];
 
     return (
-        <div className="flex flex-col gap-4 border border-gray-300 p-4 rounded-md bg-white shadow-md">
+        <div className="flex flex-col gap-4 py-4 rounded-md bg-white shadow-md">
             <h3 className="text-xl font-bold text-secondary">Datos del Usuario</h3>
-            <p className="w-full flex gap-2">
-                <span className="text-secondary py-1 rounded min-w-30">Clave:</span>
-                <strong>{usuario.clave_usuario}</strong>
-            </p>
 
-            <p className="w-full flex gap-2">
-                <span className="text-secondary py-1 rounded min-w-30">Nombre:</span>
-                <strong>{capitalizarNombre(usuario.nombre_usuario)}</strong>
-            </p>
-
-            <p className="w-full flex gap-2">
-                <span className="text-secondary py-1 rounded min-w-30">Apellidos:</span>
-                <strong>{capitalizarNombre(usuario.apellidos_usuario)}</strong>
-            </p>
-
-            <p className="w-full flex gap-2">
-                <span className="text-secondary py-1 rounded min-w-30">Cargo:</span>
-                <strong>{usuario.cargo_usuario}</strong>
-            </p>
-
-            <p className="w-full flex gap-2">
-                <span className="text-secondary py-1 rounded min-w-30">Correo:</span>
-                <strong>{usuario.correo_usuario}</strong>
-            </p>
-
-            <p className="w-full flex gap-2">
-                <span className="text-secondary py-1 rounded min-w-30">Carrera:</span>
-                <strong>{usuario.carrera}</strong>
-            </p>
+            {campos.map((campo, index) => (
+                <p key={index} className="w-full flex gap-2">
+                    <span className="text-secondary py-1 rounded min-w-30">{campo.etiqueta}:</span>
+                    <strong>{campo.valor}</strong>
+                </p>
+            ))}
 
             <button
                 onClick={onConfirmar}
@@ -57,4 +30,4 @@ export default function VistaPreviaUsuar({ usuario, onConfirmar, capitalizarNomb
             </button>
         </div>
     );
-};
+}
