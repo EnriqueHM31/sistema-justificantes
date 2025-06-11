@@ -1,21 +1,13 @@
-import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { type InputFileUploadProps } from '../../../types';
+import { useFile } from '../../../hooks/Administrador/useFile';
 
-const VisuallyHiddenInput = styled('input')({
-    clip: 'rect(0 0 0 0)',
-    clipPath: 'inset(50%)',
-    height: 1,
-    overflow: 'hidden',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    whiteSpace: 'nowrap',
-    width: 1,
-    backgroundColor: '#0b347e',
-});
 
-export default function InputFileUpload() {
+export default function InputFileUpload({ onFileRead, inputFileRef }: InputFileUploadProps) {
+
+    const { handleChange, VisuallyHiddenInput } = useFile({ onFileRead });
+
     return (
         <Button
             component="label"
@@ -26,6 +18,7 @@ export default function InputFileUpload() {
             sx={{
                 backgroundColor: '#0b347e',
                 color: '#fff',
+                fontSize: '.6rem',
                 '&:hover': {
                     backgroundColor: '#0b347e',
                     color: '#fff',
@@ -35,9 +28,9 @@ export default function InputFileUpload() {
             Carga CSV
             <VisuallyHiddenInput
                 type="file"
-                onChange={(event) => console.log(event.target.files)}
-                multiple
-                accept='text/csv'
+                onChange={handleChange}
+                accept="text/csv"
+                ref={inputFileRef}
             />
         </Button>
     );
