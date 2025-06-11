@@ -38,15 +38,12 @@ export default function CircularWithValueLabel({ onComplete }: CircularWithValue
     // Maneja el incremento de progreso
     useEffect(() => {
         const timer = setInterval(() => {
-            setProgress((prevProgress) => {
-                return prevProgress >= 100 ? 100 : prevProgress + 20;
-            });
+            setProgress((prev) => (prev >= 100 ? 100 : prev + 10));
         }, 500);
 
         return () => clearInterval(timer);
     }, []);
 
-    // Ejecuta onComplete cuando llegue a 100
     useEffect(() => {
         if (progress >= 100 && onComplete) {
             onComplete();
