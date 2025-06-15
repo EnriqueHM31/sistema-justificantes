@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { type useFileProps } from "../../types";
+import { type useFileProps } from "@/types";
 
 
 export function useFile({ onFileRead }: useFileProps) {
