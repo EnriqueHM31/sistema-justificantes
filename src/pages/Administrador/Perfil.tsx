@@ -1,11 +1,11 @@
-import NavegacionAdministrador from "../Administrador/components/Navegacion";
-import iconoUser from "../../assets/iconos/iconoUser.webp";
-import iconoCamara from "../../assets/iconos/iconoCamara.webp";
-import CambiarFoto from "../../components/perfil/CambiarFoto";
+import NavegacionAdministrador from "@/pages/Administrador/components/Navegacion";
+import iconoUser from "@/assets/iconos/iconoUser.webp";
+import iconoCamara from "@/assets/iconos/iconoCamara.webp";
+import CambiarFoto from "@/components/perfil/CambiarFoto";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
-import CambiarContraseña from "../../components/perfil/CambiarContraseña";
-import { usePerfil } from "../../hooks/perfil/perfil";
+import CambiarContraseña from "@/components/perfil/CambiarContraseña";
+import { usePerfil } from "@/hooks/perfil/perfil";
 import CloseIcon from '@mui/icons-material/Close';
 
 export default function Perfil() {
@@ -69,7 +69,7 @@ export default function Perfil() {
                             openFoto ? (
                                 <CambiarFoto />
                             ) : openContraseña ? (
-                                <CambiarContraseña />
+                                <CambiarContraseña email={user?.emailAddresses[0].emailAddress || ""} />
                             ) : (
                                 <button className="text-gray-400 rounded-md p-2 w-full max-w-md font-bold text-xl">
                                     Edición del perfil
