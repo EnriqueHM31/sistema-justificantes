@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { capitalizarNombre, generarCorreoJefeCarrera } from "../../assets/ts/Administrador/Registrar";
-import { type UsuarioJefeFile } from "../../types";
+import { capitalizarNombre, generarCorreoJefeCarrera } from "@/assets/ts/Administrador/Registrar";
+import { type UsuarioJefeFile } from "@/types";
 
 export function useFormularioJefe() {
     const [formData, setFormData] = useState<UsuarioJefeFile>({
