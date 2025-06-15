@@ -1,6 +1,6 @@
-import IconoCorrecto from "../../assets/iconos/iconoCorrecto";
-import IconoError from "../../assets/iconos/iconoError";
-import { useFoto } from "../../hooks/perfil/Foto";
+import IconoCorrecto from "@/assets/iconos/iconoCorrecto";
+import IconoError from "@/assets/iconos/iconoError";
+import { useFoto } from "@/hooks/perfil/Foto";
 import { useUser } from "@clerk/clerk-react";
 import { toast } from "sonner";
 
