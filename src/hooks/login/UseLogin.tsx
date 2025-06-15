@@ -4,8 +4,10 @@ import { useState } from "react";
 import { toast } from "sonner";
 import IconoError from "../../assets/iconos/iconoError";
 import IconoLoading from "../../assets/iconos/IconoLoading";
+import { useNavigate } from "react-router-dom";
 
 export function useLogin() {
+    const navigate = useNavigate();
     const { signIn, setActive } = useSignIn();
     const { user } = useUser();
     const [form, setForm] = useState({
@@ -20,7 +22,6 @@ export function useLogin() {
 
     if (signIn) {
         if (user) {
-            console.log(user);
             const role = user.publicMetadata.role
 
             if (role === "Administrador") {
@@ -68,7 +69,18 @@ export function useLogin() {
                 await setActive({ session: result.createdSessionId });
 
                 setTimeout(() => {
-                    window.location.href = "/administrador/registrarusuarios";
+                    console.log(user);
+                    const role = user?.publicMetadata?.role as string;
+
+                    if (role === "Administrador") {
+                        navigate("/administrador/registrarusuarios");
+                    } else if (role === "Jefe de Carrera") {
+                        navigate("/jefecarrera/registrarusuarios");
+                    } else if (role === "estudiante") {
+                        navigate("/estudiante/inicio");
+                    } else {
+                        toast.error("Error al iniciar sesión. Verifica tus credenciales.");
+                    }
                 }, 2000);
 
             }
