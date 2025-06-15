@@ -1,8 +1,8 @@
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { useFileCSV } from '../../../hooks/Administrador/UseFileCSV';
-import { type SelectLabelsFileCSVProps } from '../../../types';
+import { useFileCSV } from '@/hooks/Administrador/UseFileCSV';
+import { type SelectLabelsFileCSVProps } from '@/types';
 
 export default function SelectLabels({ items, handleChange }: SelectLabelsFileCSVProps) {
     const { value, handleSelectChange } = useFileCSV({ handleChange });
