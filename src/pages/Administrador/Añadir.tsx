@@ -1,13 +1,13 @@
-import Navegacion from "../Administrador/components/Navegacion";
-import InputFileUpload from "./components/FileCSV";
-import Previsualizacion from "./components/Previsualizacion";
-import ModalConfirmacion from "../../components/generales/ModalConfirmacion";
-import TablaPrevisualizacion from "./components/TablaRegistro";
+import Navegacion from "@/pages/Administrador/components/Navegacion";
+import InputFileUpload from "@/pages/Administrador/components/FileCSV";
+import Previsualizacion from "@/pages/Administrador/components/Previsualizacion";
+import ModalConfirmacion from "@/components/generales/ModalConfirmacion";
+import TablaPrevisualizacion from "@/pages/Administrador/components/TablaRegistro";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import { useModales } from "../../hooks/Administrador/useModales";
-import { useFormularioJefe } from "../../hooks/Administrador/useFormularioJefe";
-import { useArchivoCSV } from "../../hooks/Administrador/useDocumentoCSV";
-import FormularioJefe from "./components/Formulario";
+import { useModales } from "@/hooks/Administrador/useModales";
+import { useFormularioJefe } from "@/hooks/Administrador/useFormularioJefe";
+import { useArchivoCSV } from "@/hooks/Administrador/useDocumentoCSV";
+import FormularioJefe from "@/pages/Administrador/components/Formulario";
 
 export default function Añadir() {
 
