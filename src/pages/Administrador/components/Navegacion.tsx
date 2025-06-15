@@ -1,7 +1,7 @@
-import { useNavAdmin } from "../../../hooks/Navegacion/UseNavAdmin";
-import iconoUser from "../../../assets/iconos/iconoUser.webp";
+import { useNavAdmin } from "@/hooks/Navegacion/UseNavAdmin";
+import iconoUser from "@/assets/iconos/iconoUser.webp";
 import { toast } from "sonner";
-import IconoLoading from "../../../assets/iconos/IconoLoading";
+import IconoLoading from "@/assets/iconos/IconoLoading";
 import MenuIcon from '@mui/icons-material/Menu';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { useState } from "react";
