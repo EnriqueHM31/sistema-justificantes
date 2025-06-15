@@ -1,5 +1,5 @@
-import error404 from "../../assets/errores/404.webp";
-import fondoErrores from "../../assets/fondos/fondo_errores.webp";
+import error404 from "@/assets/errores/404.webp";
+import fondoErrores from "@/assets/fondos/fondo_errores.webp";
 
 
 export default function Page404() {
