@@ -8,6 +8,7 @@ import ModalConfirmacion from "@/components/generales/ModalConfirmacion";
 
 
 export default function TablaPrevisualizacion({ datos, handleBDDocumentoCSV, mostrarModal, handleModalCancelarDocumento }: DataCSVProps) {
+
     const { errores, mostrarHasta, encabezados, filas, filasMostradas, mostrarMas, handleEdit } = useTablaRegistro({ datos }) as TablaPrevisualizacionProps;
 
 
