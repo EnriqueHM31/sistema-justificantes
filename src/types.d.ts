@@ -50,6 +50,12 @@ export interface TablaPrevisualizacionProps {
     handleEdit: (filaIndex: number, colIndex: number, newValue: string) => void;
 }
 
-interface useFileProps {
+export interface useFileProps {
     onFileRead: (data: string[][]) => void;
+}
+
+export interface inputRefProps {
+    value?: string;
+    disabled?: boolean;
+    focus: () => void;
 }
