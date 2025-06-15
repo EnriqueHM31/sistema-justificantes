@@ -1,9 +1,6 @@
-interface Contraseñas {
-    nueva: string;
-    confirmar: string;
-}
+import { type NuevaConfirmarContraseñasProps } from "@/types";
 
-export default function ReglasContraseña({ contraseñas }: { contraseñas: Contraseñas }) {
+export default function ReglasContraseña({ contraseñas }: { contraseñas: NuevaConfirmarContraseñasProps }) {
     const rules = [
         {
             id: "check-length",
