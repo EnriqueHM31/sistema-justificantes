@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useUser } from "@clerk/clerk-react";
 
-
-
 export function useFoto() {
     const [preview, setPreview] = useState<string | null>(null);
     const [file, setFile] = useState<File | null>(null);
