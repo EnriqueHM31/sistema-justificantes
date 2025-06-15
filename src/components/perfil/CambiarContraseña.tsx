@@ -1,44 +1,16 @@
 import { useCambiarContraseña } from "../../hooks/perfil/CambiarContraseña";
-import { toast } from "sonner";
 import ReglasContraseña from "./Reglas";
-import IconoError from "../../assets/iconos/iconoError";
-import IconoCorrecto from "../../assets/iconos/iconoCorrecto";
 import ModalConfirmacion from "../generales/ModalConfirmacion";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
-export default function CambiarContraseña() {
+export default function CambiarContraseña({ email }: { email: string }) {
     const { contraseñas, cambiarContraseña, getBorderColor, handleChange, mostrarModal, handleSubmit, handleClickModalClose, handleClickPasswordNueva, handleClickPasswordConfirmar, passwordVisible } = useCambiarContraseña();
-
-    const handleSubmitBoton = (e: React.FormEvent) => {
-
-        const { success, message } = handleSubmit(e);
-        if (!success) {
-            toast(message, {
-                icon: <IconoError />
-            });
-            return;
-        }
-    };
-
-    const confirmarCambio = async () => {
-        try {
-            await cambiarContraseña(contraseñas.nueva, contraseñas.confirmar);
-            toast("Contraseña cambiada con éxito", {
-                icon: <IconoCorrecto />
-            });
-        } catch (err) {
-            toast("Error al cambiar la contraseña", {
-                icon: <IconoError />
-            });
-            console.error(err);
-        }
-    };
 
 
     return (
         <>
-            <form onSubmit={handleSubmitBoton} className="flex flex-col items-center justify-center w-full h-full gap-4 relative mt-10 md:mt-0 min-h-[50dvh] ">
+            <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center w-full h-full gap-4 relative mt-10 md:mt-0 min-h-[50dvh] ">
                 <h2 className="font-extrabold text-lg xl:text-3xl">Cambiar contraseña</h2>
 
                 <label htmlFor="contraseñanueva" className="relative w-full md:md:max-w-3/4">
@@ -103,7 +75,7 @@ export default function CambiarContraseña() {
             </form>
 
             {mostrarModal && (
-                <ModalConfirmacion title="¿Realmente quieres cambiar la contraseña?" message="" handleClickModalClose={handleClickModalClose} confirmarCambio={confirmarCambio} />
+                <ModalConfirmacion title="¿Realmente quieres cambiar la contraseña?" message="" handleClickModalClose={handleClickModalClose} confirmarCambio={() => cambiarContraseña(email, contraseñas.nueva)} />
             )
             }
         </>
