@@ -36,7 +36,7 @@ export interface SelectLabelsFileCSVProps {
 export interface DataCSVProps {
     datos: string[][];
     handleBDDocumentoCSV: () => void;
-    mostrarModal: ModalConfirmacionProps;
+    mostrarModal: ModalesRegistroProps;
     handleModalCancelarDocumento: () => void;
 }
 
@@ -58,4 +58,34 @@ export interface inputRefProps {
     value?: string;
     disabled?: boolean;
     focus: () => void;
+}
+
+export interface ModalConfirmacionProps {
+    title: string;
+    message?: string;
+    handleClickModalClose: () => void;
+    confirmarCambio: () => void;
+}
+
+export interface NuevaConfirmarContraseñasProps {
+    nueva: string;
+    confirmar: string;
+}
+
+export interface DatosCSVProps {
+    datos: string[][];
+}
+
+export interface FormularioJefeProps {
+    formData: UsuarioJefe;
+    handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleCarreraChange: (value: string) => void;
+    inputValidity: { [key: string]: boolean | null };
+}
+
+export interface ModalesRegistroProps {
+    registrar: boolean;
+    confirmar_registro: boolean;
+    documento_csv: boolean;
+    confirmar_documento_csv: boolean;
 }
