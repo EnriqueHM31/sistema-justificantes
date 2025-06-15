@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useNavAdministrador } from "../../store/NavAdministrador";
+import { useNavAdministrador } from "@/store/NavAdministrador";
 import { useAuth, useUser } from "@clerk/clerk-react";
 
 export function useNavAdmin() {
