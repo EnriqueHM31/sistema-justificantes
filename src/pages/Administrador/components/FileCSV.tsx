@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { type InputFileUploadProps } from '../../../types';
-import { useFile } from '../../../hooks/Administrador/useFile';
+import { type InputFileUploadProps } from '@/types';
+import { useFile } from '@/hooks/Administrador/useFile';
 
 
 export default function InputFileUpload({ onFileRead, inputFileRef }: InputFileUploadProps) {
