@@ -1,4 +1,4 @@
-import { type PrevisualizacionRegistroUnicoProps } from "../../../types";
+import { type PrevisualizacionRegistroUnicoProps } from "@/types";
 
 export default function VistaPreviaUsuar({ usuario, onConfirmar, capitalizarNombre }: PrevisualizacionRegistroUnicoProps) {
 
