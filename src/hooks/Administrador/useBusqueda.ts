@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
-import { type UsuarioJefeFile } from "../../types";
-import UsuariosMock from "../../pages/MOOKS/usuario.json";
+import { type UsuarioJefeFile } from "@/types";
+import UsuariosMock from "@/pages/MOOKS/usuario.json";
 
 export function useBusqueda(setFormData: (value: UsuarioJefeFile) => void) {
     const [search, setSearch] = useState("");
