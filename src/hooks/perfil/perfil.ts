@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/clerk-react";
-import { cambiarTitulo } from "../../assets/ts/CambioTitulo";
+import { cambiarTitulo } from "@/assets/ts/CambioTitulo";
 
 export function usePerfil() {
     const { user } = useUser();
