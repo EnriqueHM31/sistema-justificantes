@@ -3,16 +3,10 @@ import { type UsuarioJefe } from "@/types";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import WarningOutlinedIcon from "@mui/icons-material/WarningOutlined";
 import Select from "@/pages/Administrador/components/Select";
-
-interface FormularioProps {
-    formData: UsuarioJefe;
-    handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    handleCarreraChange: (value: string) => void;
-    inputValidity: { [key: string]: boolean | null };
-}
+import { type FormularioJefeProps } from "@/types";
 
 
-export default function Formulario({ formData, handleInputChange, handleCarreraChange, inputValidity }: FormularioProps) {
+export default function Formulario({ formData, handleInputChange, handleCarreraChange, inputValidity }: FormularioJefeProps) {
     return (
         <form className="flex flex-col items-center justify-center gap-6 w-full mx-auto">
             {formulario.map(({ id, label, type, pattern, required }) => (
