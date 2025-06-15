@@ -1,4 +1,4 @@
-// components/otpHandlers.ts
+
 export type InputRef = HTMLInputElement;
 
 export const handleInput = (
