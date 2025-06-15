@@ -1,6 +1,6 @@
-import { useCambiarContraseña } from "../../hooks/perfil/CambiarContraseña";
-import ReglasContraseña from "./Reglas";
-import ModalConfirmacion from "../generales/ModalConfirmacion";
+import { useCambiarContraseña } from "@/hooks/perfil/CambiarContraseña";
+import ReglasContraseña from "@/components/perfil/Reglas";
+import ModalConfirmacion from "@/components/generales/ModalConfirmacion";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
