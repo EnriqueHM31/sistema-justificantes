@@ -1,10 +1,4 @@
-interface ModalConfirmacionProps {
-    title: string;
-    message?: string;
-    handleClickModalClose: () => void;
-    confirmarCambio: () => void;
-}
-
+import { type ModalConfirmacionProps } from "@/types";
 
 export default function ModalConfirmacion({ title, message, handleClickModalClose, confirmarCambio }: ModalConfirmacionProps) {
 
