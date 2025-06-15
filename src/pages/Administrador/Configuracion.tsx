@@ -1,4 +1,4 @@
-import Navegacion from "../Administrador/components/Navegacion";
+import Navegacion from "@/pages/Administrador/components/Navegacion";
 
 export default function Configuracion() {
     return (
