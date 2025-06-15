@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import { type UsuarioJefe } from "../../types";
+import { type UsuarioJefe } from "@/types";
 
 export function useModales() {
 
