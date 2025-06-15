@@ -1,9 +1,9 @@
-import { capitalizarNombre } from "../../../assets/ts/Administrador/Registrar";
-import { useCompleteRegistro } from "../../../hooks/Administrador/useCompleteRegistro";
-import { useTablaRegistro } from "../../../hooks/Administrador/useTablaRegistro";
-import { type TablaPrevisualizacionProps, type DataCSVProps } from "../../../types";
-import LoadingCarga from "../../../components/generales/LoadingCarga";
-import ModalConfirmacion from "../../../components/generales/ModalConfirmacion";
+import { capitalizarNombre } from "@/assets/ts/Administrador/Registrar";
+import { useCompleteRegistro } from "@/hooks/Administrador/useCompleteRegistro";
+import { useTablaRegistro } from "@/hooks/Administrador/useTablaRegistro";
+import { type TablaPrevisualizacionProps, type DataCSVProps } from "@/types";
+import LoadingCarga from "@/components/generales/LoadingCarga";
+import ModalConfirmacion from "@/components/generales/ModalConfirmacion";
 
 
 
