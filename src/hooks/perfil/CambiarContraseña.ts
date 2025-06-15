@@ -1,8 +1,9 @@
-import { useUser } from "@clerk/clerk-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 export function useCambiarContraseña() {
-    const { user } = useUser();
+    const navigate = useNavigate();
     const [contraseñas, setContraseñas] = useState({ nueva: "", confirmar: "" });
     const [mostrarModal, setMostrarModal] = useState(false);
     const [passwordVisible, setPasswordVisible] = useState({
@@ -64,16 +65,25 @@ export function useCambiarContraseña() {
         return `border-input ${baseFocus}`;
     };
 
-    const cambiarContraseña = async (actual: string, nueva: string) => {
-        if (!user) throw new Error("Usuario no autenticado");
-
-
+    const cambiarContraseña = async (email: string, contrasenanueva: string | null, nueva?: string | null) => {
         try {
-            console.log("cambiando contraseña", actual, nueva);
-            return true
+            const res = await fetch(`${import.meta.env.VITE_API_URL}modificarcontrasena`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, contrasenanueva, nueva }),
+            });
+            const data = await res.json();
+            if (res.ok && data.success) {
+                toast.success(data.message);
+
+                setTimeout(() => {
+                    navigate("/");
+                }, 2000);
+            } else {
+                toast.error(data.message);
+            }
         } catch (error) {
-            console.error("Error al cambiar la contraseña:", error);
-            throw error;
+            toast.error("Error al cambiar la contraseña");
         } finally {
             contraseñas.nueva = "";
             contraseñas.confirmar = "";
