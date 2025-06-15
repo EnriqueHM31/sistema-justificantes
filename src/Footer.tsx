@@ -1,9 +1,9 @@
 import { toast } from "sonner";
-import iconoCopia from "./assets/iconos/iconoCopia.webp";
-import IconoCorrecto from "./assets/iconos/iconoCorrecto";
-import IconoError from "./assets/iconos/iconoError";
+import iconoCopia from "@/assets/iconos/iconoCopia.webp";
+import IconoCorrecto from "@/assets/iconos/iconoCorrecto";
+import IconoError from "@/assets/iconos/iconoError";
 import { useUser } from "@clerk/clerk-react";
-import { useNavAdmin } from "./hooks/Navegacion/UseNavAdmin";
+import { useNavAdmin } from "@/hooks/Navegacion/UseNavAdmin";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
