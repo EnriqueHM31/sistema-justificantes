@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import IconoCorrecto from "../../assets/iconos/iconoCorrecto";
-import IconoError from "../../assets/iconos/iconoError"; // Asegúrate de tener uno
+import IconoCorrecto from "@/assets/iconos/iconoCorrecto";
+import IconoError from "@/assets/iconos/iconoError"; // Asegúrate de tener uno
 
 export function useCompleteRegistro({
     handleBDDocumentoCSV,
