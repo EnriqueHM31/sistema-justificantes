@@ -1,10 +1,15 @@
 import { useCambioContraseña } from "../../hooks/CambiarContraseña/CambiarContraseña";
+import { useNavegacion } from "../../hooks/CambiarContraseña/Navegacion";
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import CambiarContraseña from "../perfil/CambiarContraseña";
+import { useInputs } from "../../hooks/CambiarContraseña/Inputs";
 
 export default function Formulario() {
 
-    const { envio, handleSubmit, handleInput, handleKeyDown, setInputRefs, handleNavigate, handleSubmitVerificar, codigoExpiraEn, handleNavigateCambiarContrasena, modificar, email } = useCambioContraseña();
+    const { envio, handleSubmit, handleSubmitVerificar, codigoExpiraEn, modificar, email } = useCambioContraseña();
+    const { handleInput, handleKeyDown, setInputRefs } = useInputs();
+
+    const { handleNavigate, handleNavigateCambiarContrasena } = useNavegacion();
 
     return (
         !envio ? (
