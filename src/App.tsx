@@ -31,7 +31,7 @@ function App() {
       </Routes>
 
       {
-        (location.pathname !== '/' && decodeURIComponent(location.pathname) !== '/cambiarcontraseña') && (
+        (location.pathname !== '/' && decodeURIComponent(location.pathname) !== '/cambiarcontraseña' && decodeURIComponent(location.pathname) !== '/cambiarcontraseña/confirmar') && (
           <Footer />
         )
       }
