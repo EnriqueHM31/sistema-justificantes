@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 
-interface Props {
-    datos: string[][];
-}
+import { type DatosCSVProps } from "@/types";
 
 const regexClave = /^ITSH_\d{4}$/;
 const regexTexto = /^[a-zA-ZÁÉÍÓÚáéíóúÑñ\s]+$/;
@@ -10,7 +8,7 @@ const regexCorreo = /^[a-zA-Z0-9._%+-]+@huatusco\.tecnm\.mx$/;
 const cargoValido = "Jefe de Carrera";
 const REGISTROS_POR_PAGINA = 10;
 
-export function useTablaRegistro({ datos }: Props) {
+export function useTablaRegistro({ datos }: DatosCSVProps) {
     const [tabla, setTabla] = useState<string[][]>([]);
     const [errores, setErrores] = useState<boolean[][]>([]);
     const [mostrarHasta, setMostrarHasta] = useState<number>(REGISTROS_POR_PAGINA);
