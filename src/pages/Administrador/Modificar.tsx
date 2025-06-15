@@ -1,7 +1,7 @@
-import { useFormularioJefe } from "../../hooks/Administrador/useFormularioJefe";
-import Navegacion from "../Administrador/components/Navegacion";
-import FormularioJefe from "./components/Formulario";
-import { useBusqueda } from "../../hooks/Administrador/useBusqueda";
+import { useFormularioJefe } from "@/hooks/Administrador/useFormularioJefe";
+import Navegacion from "@/pages/Administrador/components/Navegacion";
+import FormularioJefe from "@/pages/Administrador/components/Formulario";
+import { useBusqueda } from "@/hooks/Administrador/useBusqueda";
 
 export default function Modificar() {
     const { formData, inputValidity, handleInputChange, handleCarreraChange, setFormData, } = useFormularioJefe();
