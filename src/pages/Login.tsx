@@ -1,5 +1,5 @@
-import Formulario from "../components/login/Formulario";
-import FondoLogin from '../assets/fondos/fondo_login.png';
+import Formulario from "@/components/login/Formulario";
+import FondoLogin from '@/assets/fondos/fondo_login.png';
 
 export default function Login() {
     return (
