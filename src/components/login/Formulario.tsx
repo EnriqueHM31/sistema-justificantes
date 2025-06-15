@@ -1,4 +1,4 @@
-import { useLogin } from "../../hooks/login/UseLogin";
+import { useLogin } from "@/hooks/login/UseLogin";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
