@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { type UsuarioJefe } from "@/types";
+import { type ModalesRegistroProps } from "@/types";
 
 export function useModales() {
 
@@ -9,7 +10,7 @@ export function useModales() {
         confirmar_registro: false,
         documento_csv: false,
         confirmar_documento_csv: false
-    });
+    } as ModalesRegistroProps);
 
     const handleModalConfirmacionRegistro = ({ formData }: { formData: UsuarioJefe }) => {
 
