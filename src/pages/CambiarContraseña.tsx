@@ -1,5 +1,5 @@
-import Formulario from "../components/recuperarContraseña/Formulario"
-import FondoCambiarContraseña from '../assets/fondos/fondo_cambiar_contraseña.png';
+import Formulario from "@/components/recuperarContraseña/Formulario"
+import FondoCambiarContraseña from '@/assets/fondos/fondo_cambiar_contraseña.png';
 
 export default function CambiarContraseña() {
     return (
