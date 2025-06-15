@@ -1,8 +1,8 @@
-import { formulario, items } from "../../../assets/ts/Administrador/Registrar";
-import { type UsuarioJefe } from "../../../types";
+import { formulario, items } from "@/assets/ts/Administrador/Registrar";
+import { type UsuarioJefe } from "@/types";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import WarningOutlinedIcon from "@mui/icons-material/WarningOutlined";
-import Select from "../components/Select";
+import Select from "@/pages/Administrador/components/Select";
 
 interface FormularioProps {
     formData: UsuarioJefe;
