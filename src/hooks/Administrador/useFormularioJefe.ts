@@ -1,16 +1,15 @@
 import { useState } from "react";
 import { capitalizarNombre, generarCorreoJefeCarrera } from "@/assets/ts/Administrador/Registrar";
-import { type UsuarioJefeFile } from "@/types";
+import { type UsuarioJefe } from "@/types";
 
 export function useFormularioJefe() {
-    const [formData, setFormData] = useState<UsuarioJefeFile>({
+    const [formData, setFormData] = useState<UsuarioJefe>({
         clave_usuario: "",
         nombre_usuario: "",
         apellidos_usuario: "",
         cargo_usuario: "Jefe de Carrera",
         correo_usuario: "",
         carrera: "",
-        file: null,
     });
 
     const [inputValidity, setInputValidity] = useState<{ [key: string]: boolean | null }>({
