@@ -24,7 +24,7 @@ export default function Perfil() {
                 </Box>
 
             ) : (
-                <section className="flex flex-col md:flex-row items-center justify-center w-full max-w-laptop mx-auto p-5 gap-6 md:gap-10 py-10 ">
+                <section className="flex flex-col xl:flex-row items-center justify-center w-full max-w-laptop mx-auto p-5 gap-6 md:gap-10 py-10 ">
                     {/* Columna izquierda */}
                     <article className="flex flex-col gap-6 flex-1 w-full items-center xl:items-start md:max-w-[800px]">
                         <h2 className="text-2xl md:text-3xl text-secondary font-bold">Detalles del usuario</h2>
@@ -56,7 +56,7 @@ export default function Perfil() {
                     </article>
 
                     {/* Columna derecha */}
-                    <div className="relative flex justify-center items-center not-first-of-type: flex-1 border h-fullborder-dashed border-gray-500 w-full md:min-h-11/12 max-h-full md:h-fit h-full p-5 xl:mb-0 mb-4">
+                    <div className="relative flex justify-center items-center not-first-of-type: flex-1 border border-dashed border-gray-500 w-full xl:min-h-11/12 max-h-full xl:h-fit h-full p-5 xl:mb-0 mb-4">
                         {
                             (openFoto || openContraseña) && (
                                 <button className="absolute top-5 right-5 transform rounded-full bg-primary text-white p-1 md:p-2 w-8 h-8 flex items-center justify-center md:max-w-md font-bold text-xl z-20 " type="button" onClick={handleStart}>
