@@ -26,6 +26,12 @@ export function useLogin() {
 
             if (role === "Administrador") {
                 window.location.href = "/administrador/registrarusuarios";
+            } else if (role === "Jefe de Carrera") {
+                navigate("/jefecarrera/registrarusuarios");
+            } else if (role === "estudiante") {
+                navigate("/estudiante/inicio");
+            } else {
+                navigate("/")
             }
         }
 
