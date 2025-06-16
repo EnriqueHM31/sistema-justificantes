@@ -43,10 +43,7 @@ export function useModales() {
         const toastId = toast.loading('Registrado al usuario...');
         try {
 
-
-
-
-            const res = await fetch(`${import.meta.env.VITE_API_URL}registro`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/registro/jefescarrera`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
