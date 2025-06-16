@@ -7,6 +7,7 @@ export interface UsuarioJefe {
     cargo_usuario: string;
     correo_usuario: string;
     carrera: string;
+    role?: string;
 }
 
 export interface UsuarioJefeFile extends UsuarioJefe {
