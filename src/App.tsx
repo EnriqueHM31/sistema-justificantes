@@ -9,6 +9,8 @@ import AdministradorAñadir from "@/pages/Administrador/Añadir";
 import AdministradorModificar from "@/pages/Administrador/Modificar";
 import AdministradorEliminar from "@/pages/Administrador/Eliminar";
 import AdministradorConfiguracion from "@/pages/Administrador/Configuracion";
+
+import JefeCarreraAñadir from "@/pages/JefeCarrera/Añadir";
 import "@fontsource/montserrat/400.css";
 import "@fontsource/montserrat/500.css";
 import "@fontsource/montserrat/600.css";
@@ -23,11 +25,16 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/cambiarcontraseña" element={<CambiarContraseña />} />
         <Route path="/*" element={<Page404 />} />
+
+
         <Route path="/administrador/perfil" element={<Perfil />} />
         <Route path="/administrador/registrarusuarios" element={<AdministradorAñadir />} />
         <Route path="/administrador/modificarusuarios" element={<AdministradorModificar />} />
         <Route path="/administrador/eliminarusuarios" element={<AdministradorEliminar />} />
         <Route path="/administrador/configuracion" element={<AdministradorConfiguracion />} />
+
+
+        <Route path="/jefecarrera/registrarusuarios" element={<JefeCarreraAñadir />} />
       </Routes>
 
       {
