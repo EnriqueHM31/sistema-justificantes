@@ -67,7 +67,7 @@ export function useCambiarContraseña() {
 
     const cambiarContraseña = async (email: string, contrasenanueva: string | null, nueva?: string | null) => {
         try {
-            const res = await fetch(`${import.meta.env.VITE_API_URL}modificarcontrasena`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/modificarcontrasena`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, contrasenanueva, nueva }),
