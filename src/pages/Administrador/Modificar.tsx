@@ -11,8 +11,8 @@ export default function Modificar() {
         <>
             <Navegacion />
 
-            <section className="flex justify-center w-full py-10 max-w-laptop mx-auto gap-10">
-                <div className="flex-2 flex gap-5 flex-col">
+            <section className="flex xl:flex-row flex-col justify-center w-full py-10 max-w-laptop mx-auto gap-10 xl:px-0 px-6">
+                <div className="flex-2 flex gap-5 flex-col xl:order-1 order-2">
                     <h2 className="text-3xl font-bold">Modificar usuario</h2>
                     <FormularioJefe
                         formData={formData}
@@ -22,7 +22,7 @@ export default function Modificar() {
                     />
                 </div>
 
-                <div className="flex-3 flex flex-col gap-4 w-full relative">
+                <div className="flex-3 flex flex-col gap-4 w-full relative xl:order-2 order-1">
                     <h2 className="text-3xl font-bold">Buscar usuario</h2>
                     <p className=" py-0.5">
                         Buscar usuario por su clave o nombre y seleccionarlo para modificar
