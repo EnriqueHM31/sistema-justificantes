@@ -29,10 +29,10 @@ export default function Añadir() {
 
             <Navegacion />
 
-            <section className="flex justify-center w-full py-10 max-w-laptop mx-auto gap-10">
+            <section className="flex lg:flex-row flex-col justify-center w-full py-10 max-w-laptop mx-auto gap-10 xl:px-0 px-6">
                 <div className="flex-2 flex gap-5 flex-col">
-                    <div className="flex items-center justify-between">
-                        <h2 className="text-3xl font-bold">Registro de usuarios</h2>
+                    <div className="flex sm:flex-row flex-col md:gap-0 gap-4 items-center justify-between">
+                        <h2 className="text-2xl xl:text-3xl font-bold">Registro de usuarios</h2>
                         <InputFileUpload
                             onFileRead={setDatosArchivo}
                             inputFileRef={inputFileRef}
@@ -43,7 +43,7 @@ export default function Añadir() {
                 </div>
 
                 <div className="flex-3 relative overflow-x-auto flex gap-4 flex-col">
-                    <h2 className="text-3xl font-bold">
+                    <h2 className="text-sm md:text-3xl font-bold">
                         Previsualización{" "}
                         {datosArchivo.length > 0 ? "del documento CSV" : "del registro"}
                     </h2>
@@ -59,7 +59,7 @@ export default function Añadir() {
                             </button>
 
                             <button
-                                className="bg-secondary hover:bg-blue-800 text-white rounded-md px-4 py-2 w-fit font-bold text-md md:text-lg"
+                                className="bg-secondary hover:bg-blue-800 text-white rounded-md px-4 py-2 w-fit font-bold text-xs md:text-lg"
                                 onClick={handleModalConfirmacionDocumento}
                             >
                                 Registrar a todos los usuarios
