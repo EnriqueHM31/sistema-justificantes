@@ -38,6 +38,47 @@ export function useModales() {
         setMostrarModalRegistrar(prev => ({ ...prev, documento_csv: false }));
     };
 
+    const handleinsertarRegistro = async ({ formData }: { formData: UsuarioJefe }) => {
+
+        const toastId = toast.loading('Registrado al usuario...');
+        try {
+
+
+
+
+            const res = await fetch(`${import.meta.env.VITE_API_URL}registro`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    clave: formData.clave_usuario,
+                    nombre: formData.nombre_usuario,
+                    apellidos: formData.apellidos_usuario,
+                    cargo: formData.cargo_usuario,
+                    email: formData.correo_usuario,
+                    carrera: formData.carrera,
+                    password: 'Itsh12345%'
+                }),
+            });
+
+
+            const data = await res.json() as { success: boolean, message: string };
+            if (res.ok && data.success) {
+                toast.success(data.message, {
+                    id: toastId,
+                });
+            } else {
+                toast.error(data.message, {
+                    id: toastId,
+                });
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error("Error al registrar al usuario", {
+                id: toastId,
+            });
+        }
+    }
+
 
     return {
         mostrarModalRegistrar,
@@ -46,5 +87,6 @@ export function useModales() {
         handleModalConfirmacionDocumento,
         handleModalCancelarDocumento,
         handleBDDocumentoCSV,
+        handleinsertarRegistro
     }
 }
