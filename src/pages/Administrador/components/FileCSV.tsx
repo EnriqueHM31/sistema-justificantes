@@ -23,6 +23,11 @@ export default function InputFileUpload({ onFileRead, inputFileRef }: InputFileU
                     backgroundColor: '#0b347e',
                     color: '#fff',
                 },
+                width: {
+                    xs: 'fit-content',
+                    md: 'fit-content',
+                },
+                padding: '.5rem 2rem',
             }}
         >
             Carga CSV
