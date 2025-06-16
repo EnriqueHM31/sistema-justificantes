@@ -12,8 +12,10 @@ import FormularioJefe from "@/pages/Administrador/components/Formulario";
 export default function Añadir() {
 
     const { formData, inputValidity, capitalizarNombre, handleInputChange, handleCarreraChange } = useFormularioJefe();
+
     const { datosArchivo, inputFileRef, handleClear, setDatosArchivo } = useArchivoCSV();
-    const { handleModalConfirmacionRegistro, handleModalCancelarRegistro, handleModalConfirmacionDocumento, handleModalCancelarDocumento, handleBDDocumentoCSV, mostrarModalRegistrar } = useModales();
+
+    const { handleModalConfirmacionRegistro, handleModalCancelarRegistro, handleModalConfirmacionDocumento, handleModalCancelarDocumento, handleBDDocumentoCSV, mostrarModalRegistrar, handleinsertarRegistro } = useModales();
 
 
     return (
@@ -23,7 +25,9 @@ export default function Añadir() {
                     title="¿Realmente quieres registrar el usuario?"
                     message="Esta acción no se puede deshacer"
                     handleClickModalClose={handleModalCancelarRegistro}
-                    confirmarCambio={() => handleModalConfirmacionRegistro({ formData })}
+                    confirmarCambio={() => handleinsertarRegistro({ formData })}
+
+
                 />
             )}
 
