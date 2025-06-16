@@ -7,6 +7,10 @@ import { type FormularioJefeProps } from "@/types";
 
 
 export default function Formulario({ formData, handleInputChange, handleCarreraChange, inputValidity }: FormularioJefeProps) {
+
+
+
+
     return (
         <form className="flex flex-col items-center justify-center gap-6 w-full mx-auto">
             {formulario.map(({ id, label, type, pattern, required }) => (
