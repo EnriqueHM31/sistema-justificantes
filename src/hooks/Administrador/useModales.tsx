@@ -76,6 +76,8 @@ export function useModales() {
             toast.error("Error al registrar al usuario", {
                 id: toastId,
             });
+        } finally {
+            setMostrarModalRegistrar(prev => ({ ...prev, registrar: false }));
         }
     }
 
