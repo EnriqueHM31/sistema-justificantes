@@ -7,7 +7,6 @@ export interface UsuarioJefe {
     cargo_usuario: string;
     correo_usuario: string;
     carrera: string;
-    role?: string;
 }
 
 interface UsuarioClerkProps {
@@ -18,7 +17,6 @@ interface UsuarioClerkProps {
         clave_empleado?: string;
         cargo: string;
         carrera: string;
-        matricula?: string;
         role: string;
     };
 }
@@ -28,7 +26,6 @@ export interface UsuarioJefeFile extends UsuarioJefe {
     file: File | null | string
 }
 export interface PrevisualizacionRegistroUnicoProps {
-    usuario: UsuarioJefe;
     onConfirmar: () => void;
     capitalizarNombre: (nombre: string) => string;
 }
@@ -93,7 +90,6 @@ export interface DatosCSVProps {
 }
 
 export interface FormularioJefeProps {
-    formData: UsuarioJefe;
     handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleCarreraChange: (value: string) => void;
     inputValidity: { [key: string]: boolean | null };
