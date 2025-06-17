@@ -66,7 +66,7 @@ export default function Formulario({ formData, handleInputChange, handleCarreraC
                 <span className="text-white px-4 py-2 rounded-lg min-w-2/5 w-fit text-xs bg-secondary font-bold">
                     Carrera que dirigirá
                 </span>
-                <Select items={items} handleChange={handleCarreraChange} />
+                <Select items={items} handleChange={handleCarreraChange} carreravalue={formData.carrera} />
             </label>
         </form>
     )
