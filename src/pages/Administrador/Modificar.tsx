@@ -6,7 +6,7 @@ import { useBusqueda } from "@/hooks/Administrador/useBusqueda";
 export default function Modificar() {
     const { formData, inputValidity, handleInputChange, handleCarreraChange, setFormData, } = useFormularioJefe();
 
-    const { search, currentPage, resultadosFiltrados, totalPaginas, resultadosVisibles, handleChange, handlePageChange, handleSeleccionarUsuario } = useBusqueda(setFormData);
+    const { search, currentPage, resultadosFiltrados, totalPaginas, resultadosVisibles, handleChange, handlePageChange, handleSeleccionarUsuarioModificar } = useBusqueda(setFormData);
     return (
         <>
             <Navegacion />
@@ -54,9 +54,9 @@ export default function Modificar() {
                                         <li
                                             key={index}
                                             className="px-4 py-2 cursor-pointer hover:bg-blue-700 hover:text-white text-sm"
-                                            onClick={() => handleSeleccionarUsuario(usuario)}
+                                            onClick={() => handleSeleccionarUsuarioModificar(usuario)}
                                         >
-                                            <strong>{usuario.clave}</strong> - {usuario.nombre} {usuario.apellidos}
+                                            <strong>{usuario.publicMetadata.clave_empleado}</strong> - {usuario.firstName} {usuario.lastName}
                                         </li>
                                     ))}
                                 </ul>
