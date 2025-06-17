@@ -15,28 +15,28 @@ export const items = [
 
 export const formulario = [
     {
-        id: "clave_usuario",
+        id: "clave_empleado",
         label: "Clave de usuario",
         type: "text",
         pattern: "^ITSH_\\d{4}$",
         required: true
     },
     {
-        id: "nombre_usuario",
+        id: "firstName",
         label: "Nombre de usuario",
         type: "text",
         pattern: "^[A-Za-zÁÉÍÓÚáéíóúñÑ ]{2,50}$",
         required: true
     },
     {
-        id: "apellidos_usuario",
+        id: "lastName",
         label: "Apellidos de usuario",
         type: "text",
         pattern: "^[A-Za-zÁÉÍÓÚáéíóúñÑ ]{2,50}$",
         required: true
     },
     {
-        id: "correo_usuario",
+        id: "emailAddresses",
         label: "Correo del usuario",
         type: "email",
         pattern: "^[a-zA-Z]+@huatusco\\.tecnm\\.mx$",
@@ -45,11 +45,11 @@ export const formulario = [
 ];
 
 
-export const generarCorreoJefeCarrera = (nombre: string, apellidos: string): string => {
-    if (!nombre || !apellidos) return "";
+export const generarCorreoJefeCarrera = (firstName: string, lastName: string): string => {
+    if (!firstName || !lastName) return "";
 
-    const nombreTrim = nombre.trim().toLowerCase();
-    const apellidosTrim = apellidos.trim().toLowerCase().split(" ");
+    const nombreTrim = firstName.trim().toLowerCase();
+    const apellidosTrim = lastName.trim().toLowerCase().split(" ");
 
     const inicialNombre = nombreTrim.charAt(0);
     const apellidoPaterno = apellidosTrim[0] || "";
