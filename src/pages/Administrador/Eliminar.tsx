@@ -7,7 +7,7 @@ export default function Eliminar() {
 
     const { setFormData } = useFormularioJefe();
 
-    const { search, currentPage, resultadosFiltrados, totalPaginas, resultadosVisibles, handleChange, handlePageChange, handleSeleccionarUsuarioAEliminar, eliminar, handleEliminarJefeCarrera } = useBusqueda(setFormData);
+    const { search, currentPage, resultadosFiltrados, totalPaginas, resultadosVisibles, handleChange, handlePageChange, handleSeleccionarUsuarioAEliminar, FormDataEliminar, handleEliminarJefeCarrera } = useBusqueda(setFormData);
 
     return (
         <>
@@ -19,15 +19,15 @@ export default function Eliminar() {
 
 
                     {
-                        eliminar !== null && (
+                        FormDataEliminar !== null && (
                             <div className="flex flex-col gap-4">
-                                <p className="flex  gap-2 xl:flex-row flex-col"><strong>Clave del usuario:</strong> {eliminar.clave_usuario}</p>
-                                <p className="flex  gap-2 xl:flex-row flex-col"><strong>Nombre del usuario:</strong> {eliminar.nombre_usuario}</p>
-                                <p className="flex  gap-2 xl:flex-row flex-col"><strong>Apellidos del usuario:</strong> {eliminar.apellidos_usuario}</p>
-                                <p className="flex  gap-2 xl:flex-row flex-col"><strong>Cargo del usuario:</strong> {eliminar.role}</p>
-                                <p className="flex  gap-2 xl:flex-row flex-col"><strong>Correo del usuario:</strong> {eliminar.correo_usuario}</p>
-                                <p className="flex  gap-2 xl:flex-row flex-col"><strong>Carrera que dirige el usuario:</strong> {eliminar.carrera}</p>
-                                <button onClick={() => handleEliminarJefeCarrera({ email: eliminar.correo_usuario })} className="bg-secondary text-white px-4 py-2 rounded-md font-bold" >Eliminar usuario</button>
+                                <p className="flex  gap-2 xl:flex-row flex-col"><strong>Clave del usuario:</strong> {FormDataEliminar.clave_usuario}</p>
+                                <p className="flex  gap-2 xl:flex-row flex-col"><strong>Nombre del usuario:</strong> {FormDataEliminar.nombre_usuario}</p>
+                                <p className="flex  gap-2 xl:flex-row flex-col"><strong>Apellidos del usuario:</strong> {FormDataEliminar.apellidos_usuario}</p>
+                                <p className="flex  gap-2 xl:flex-row flex-col"><strong>Cargo del usuario:</strong> {FormDataEliminar.role}</p>
+                                <p className="flex  gap-2 xl:flex-row flex-col"><strong>Correo del usuario:</strong> {FormDataEliminar.correo_usuario}</p>
+                                <p className="flex  gap-2 xl:flex-row flex-col"><strong>Carrera que dirige el usuario:</strong> {FormDataEliminar.carrera}</p>
+                                <button onClick={() => handleEliminarJefeCarrera({ email: FormDataEliminar.correo_usuario })} className="bg-secondary text-white px-4 py-2 rounded-md font-bold" >Eliminar usuario</button>
                             </div>
                         )
                     }
