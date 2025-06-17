@@ -1,7 +1,5 @@
 import { useNavAdmin } from "@/hooks/Navegacion/UseNavAdmin";
 import iconoUser from "@/assets/iconos/iconoUser.webp";
-import { toast } from "sonner";
-import IconoLoading from "@/assets/iconos/IconoLoading";
 import MenuIcon from '@mui/icons-material/Menu';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { useState } from "react";
@@ -11,15 +9,6 @@ import { useState } from "react";
 export default function Navegacion() {
     const [openMenu, setOpenMenu] = useState(false);
     const { links, openDropdown, toggleDropdown, handleSignOut, user } = useNavAdmin();
-
-
-    const handleSalir = () => {
-        toast(
-            <IconoLoading text="Cerrando sesión..." />,
-        );
-        handleSignOut();
-    }
-
 
     const handleMenu = () => {
         setOpenMenu(!openMenu);
@@ -57,7 +46,7 @@ export default function Navegacion() {
                                         <a href="/administrador/perfil" className="block px-4 py-2 text-sm text-black hover:bg-hover-primary hover:text-white">Perfil</a>
                                     </li>
                                     <li>
-                                        <button className="block px-4 py-2 text-sm text-black hover:bg-hover-primary hover:text-white w-full text-start" type="button" onClick={handleSalir}>
+                                        <button className="block px-4 py-2 text-sm text-black hover:bg-hover-primary hover:text-white w-full text-start" type="button" onClick={handleSignOut}>
                                             Cerrar sesión
                                         </button>
                                     </li>
