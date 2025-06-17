@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import { type UsuarioJefe } from "@/types";
 import { type ModalesRegistroProps } from "@/types";
+import { useFormData } from "@/store/dataJefeCarrera";
 
-export function useModales({ setFormDataRegistro }: { setFormDataRegistro: React.Dispatch<React.SetStateAction<UsuarioJefe>> }) {
+export function useModales() {
+
+    const { formData, reiniciarFormData } = useFormData();
 
     const [mostrarModalRegistrar, setMostrarModalRegistrar] = useState({
         registrar: false,
@@ -12,9 +14,9 @@ export function useModales({ setFormDataRegistro }: { setFormDataRegistro: React
         confirmar_documento_csv: false
     } as ModalesRegistroProps);
 
-    const handleModalConfirmacionRegistro = ({ formDataRegistro }: { formDataRegistro: UsuarioJefe }) => {
+    const handleModalConfirmacionRegistro = () => {
 
-        if (!formDataRegistro.clave_usuario || !formDataRegistro.nombre_usuario || !formDataRegistro.apellidos_usuario || !formDataRegistro.correo_usuario || !formDataRegistro.carrera) {
+        if (!formData.publicMetadata.clave_empleado || !formData.firstName || !formData.lastName || !formData.emailAddresses[0].emailAddress || !formData.publicMetadata.carrera) {
             return toast.error("Los campos no pueden estar vacíos")
         }
 
@@ -38,7 +40,7 @@ export function useModales({ setFormDataRegistro }: { setFormDataRegistro: React
         setMostrarModalRegistrar(prev => ({ ...prev, documento_csv: false }));
     };
 
-    const handleinsertarRegistro = async ({ formDataRegistro }: { formDataRegistro: UsuarioJefe }) => {
+    const handleinsertarRegistro = async () => {
 
         const toastId = toast.loading('Registrado al usuario...');
         try {
@@ -47,12 +49,12 @@ export function useModales({ setFormDataRegistro }: { setFormDataRegistro: React
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    clave: formDataRegistro.clave_usuario,
-                    nombre: formDataRegistro.nombre_usuario,
-                    apellidos: formDataRegistro.apellidos_usuario,
-                    cargo: formDataRegistro.cargo_usuario,
-                    email: formDataRegistro.correo_usuario,
-                    carrera: formDataRegistro.carrera,
+                    clave: formData.publicMetadata.clave_empleado,
+                    nombre: formData.firstName,
+                    apellidos: formData.lastName,
+                    cargo: formData.publicMetadata.cargo,
+                    email: formData.emailAddresses[0].emailAddress,
+                    carrera: formData.publicMetadata.carrera,
                     password: 'Itsh12345%'
                 }),
             });
@@ -63,6 +65,7 @@ export function useModales({ setFormDataRegistro }: { setFormDataRegistro: React
                 toast.success(data.message, {
                     id: toastId,
                 });
+                reiniciarFormData();
 
             } else {
                 toast.error(data.message, {
@@ -76,7 +79,6 @@ export function useModales({ setFormDataRegistro }: { setFormDataRegistro: React
             });
         } finally {
             setMostrarModalRegistrar(prev => ({ ...prev, registrar: false }));
-            setFormDataRegistro(prev => ({ ...prev, clave_usuario: "", nombre_usuario: "", apellidos_usuario: "", cargo_usuario: "Jefe de Carrera", correo_usuario: "", carrera: "" }));
         }
     }
 
