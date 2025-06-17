@@ -1,9 +1,9 @@
-import CambiarContraseña from "@/pages/CambiarContraseña";
+import CambiarContraseña from "@/pages/CambiarContraseña/CambiarContraseña";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Toaster } from "sonner";
-import Login from "@/pages/Login";
+import Login from "@/pages/InicioSesion/Login";
 import Page404 from "@/pages/errores/Page404";
-import Footer from "@/Footer";
+import Footer from "@/components/generales/Footer";
 import Perfil from "@/pages/Administrador/Perfil";
 import AdministradorAñadir from "@/pages/Administrador/Añadir";
 import AdministradorModificar from "@/pages/Administrador/Modificar";
@@ -14,6 +14,9 @@ import JefeCarreraAñadir from "@/pages/JefeCarrera/Añadir";
 import "@fontsource/montserrat/400.css";
 import "@fontsource/montserrat/500.css";
 import "@fontsource/montserrat/600.css";
+import IconoError from "./components/iconos/iconoError";
+import IconoCorrecto from "./components/iconos/iconoCorrecto";
+import IconoLoading from "./components/iconos/IconoLoading";
 
 
 function App() {
@@ -59,6 +62,13 @@ function App() {
         }}
         visibleToasts={3}
         richColors
+        icons={
+          {
+            error: <IconoError />,
+            success: <IconoCorrecto />,
+            loading: <IconoLoading />
+          }
+        }
       />
     </>
   )
