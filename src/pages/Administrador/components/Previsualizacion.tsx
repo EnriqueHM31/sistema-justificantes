@@ -1,15 +1,24 @@
+import { useFormData } from "@/store/dataJefeCarrera";
 import { type PrevisualizacionRegistroUnicoProps } from "@/types";
 
-export default function VistaPreviaUsuar({ usuario, onConfirmar, capitalizarNombre }: PrevisualizacionRegistroUnicoProps) {
+interface CampoDatos {
+    etiqueta: string;
+    valor: string;
+}
+
+
+export default function VistaPreviaUsuar({ onConfirmar, capitalizarNombre }: PrevisualizacionRegistroUnicoProps) {
+
+    const { formData } = useFormData();
 
     const campos = [
-        { etiqueta: "Clave", valor: usuario.clave_usuario },
-        { etiqueta: "Nombre", valor: capitalizarNombre(usuario.nombre_usuario) },
-        { etiqueta: "Apellidos", valor: capitalizarNombre(usuario.apellidos_usuario) },
-        { etiqueta: "Cargo", valor: usuario.cargo_usuario },
-        { etiqueta: "Correo", valor: usuario.correo_usuario },
-        { etiqueta: "Carrera", valor: usuario.carrera },
-    ];
+        { etiqueta: "Clave", valor: formData.publicMetadata.clave_empleado },
+        { etiqueta: "Nombre", valor: capitalizarNombre(formData.firstName) },
+        { etiqueta: "Apellidos", valor: capitalizarNombre(formData.lastName) },
+        { etiqueta: "Cargo", valor: formData.publicMetadata.cargo },
+        { etiqueta: "Correo", valor: formData.emailAddresses[0]?.emailAddress },
+        { etiqueta: "Carrera", valor: formData.publicMetadata.carrera },
+    ] as CampoDatos[];
 
     return (
         <div className="flex flex-col gap-4 py-4 rounded-md bg-white shadow-md">
