@@ -3,7 +3,7 @@ import { capitalizarNombre, generarCorreoJefeCarrera } from "@/assets/ts/Adminis
 import { type UsuarioJefe } from "@/types";
 
 export function useFormularioJefe() {
-    const [formData, setFormData] = useState<UsuarioJefe>({
+    const [formDataRegistro, setFormDataRegistro] = useState<UsuarioJefe>({
         clave_usuario: "",
         nombre_usuario: "",
         apellidos_usuario: "",
@@ -27,7 +27,7 @@ export function useFormularioJefe() {
                 ? capitalizarNombre(value)
                 : value;
 
-        setFormData(prev => {
+        setFormDataRegistro(prev => {
             const updated = { ...prev, [name]: valorProcesado };
 
             if (name === "nombre_usuario" || name === "apellidos_usuario") {
@@ -56,15 +56,15 @@ export function useFormularioJefe() {
     };
 
     const handleCarreraChange = (value: string) => {
-        setFormData(prev => ({ ...prev, carrera: value }));
+        setFormDataRegistro(prev => ({ ...prev, carrera: value }));
     };
 
     return {
-        formData,
+        formDataRegistro,
         handleInputChange,
         handleCarreraChange,
         inputValidity,
         capitalizarNombre,
-        setFormData,
+        setFormDataRegistro,
     };
 }
