@@ -46,8 +46,6 @@ function App() {
         )
       }
 
-
-
       <Toaster
         position="bottom-right"
         duration={3000}
@@ -58,6 +56,8 @@ function App() {
             borderRadius: '10px',
             background: '#0f47ad',
             color: '#fff',
+            display: "flex",
+            gap: "20px",
           },
         }}
         visibleToasts={3}
@@ -69,6 +69,13 @@ function App() {
             loading: <IconoLoading />
           }
         }
+
+        swipeDirections={[
+          "top",
+          "bottom",
+          "left",
+          "right",
+        ]}
       />
     </>
   )
