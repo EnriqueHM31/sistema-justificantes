@@ -5,9 +5,9 @@ import Navegacion from "@/pages/Administrador/components/Navegacion";
 export default function Eliminar() {
 
 
-    const { setFormData } = useFormularioJefe();
+    const { setFormDataRegistro } = useFormularioJefe();
 
-    const { search, currentPage, resultadosFiltrados, totalPaginas, resultadosVisibles, handleChange, handlePageChange, handleSeleccionarUsuarioAEliminar, FormDataEliminar, handleEliminarJefeCarrera } = useBusqueda(setFormData);
+    const { search, currentPage, resultadosFiltrados, totalPaginas, resultadosVisibles, handleChange, handlePageChange, handleSeleccionarUsuarioAEliminar, FormDataEliminar, handleEliminarJefeCarrera } = useBusqueda({ setFormDataRegistro });
 
     return (
         <>
