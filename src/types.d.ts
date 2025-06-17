@@ -1,4 +1,4 @@
-
+import { type EmailAddressResource } from "@clerk/types";
 
 export interface UsuarioJefe {
     clave_usuario: string;
@@ -9,6 +9,20 @@ export interface UsuarioJefe {
     carrera: string;
     role?: string;
 }
+
+interface UsuarioClerkProps {
+    firstName: string;
+    lastName: string;
+    emailAddresses: EmailAddressResource[];
+    publicMetadata: {
+        clave_empleado?: string;
+        cargo: string;
+        carrera: string;
+        matricula?: string;
+        role: string;
+    };
+}
+
 
 export interface UsuarioJefeFile extends UsuarioJefe {
     file: File | null | string
@@ -31,6 +45,7 @@ export interface ItemPropsFileCSV {
 export interface SelectLabelsFileCSVProps {
     items: ItemPropsFileCSV[];
     handleChange: (value: string) => void;
+    carreravalue?: string;
 }
 
 
