@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useNavAdministrador } from "@/store/NavAdministrador";
 import { useAuth, useUser } from "@clerk/clerk-react";
+import { toast } from "sonner";
 
 export function useNavAdmin() {
     const { links, setActiveByPath } = useNavAdministrador();
@@ -13,7 +14,7 @@ export function useNavAdmin() {
 
     const handleSignOut = async () => {
         try {
-
+            toast.loading("Cerrando sesión...");
             setTimeout(async () => {
                 await signOut();
                 window.location.href = "/";
