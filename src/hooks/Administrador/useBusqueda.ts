@@ -1,27 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { type UsuarioJefe, type UsuarioJefeFile } from "@/types";
-import UsuariosMock from "@/pages/MOOKS/usuario.json";
 import { toast } from "sonner";
-import { type EmailAddressResource } from "@clerk/types";
+import { type UsuarioClerkProps } from "@/types";
 
-interface UsuarioClerkProps {
-    firstName: string;
-    lastName: string;
-    emailAddresses: EmailAddressResource[];
-    publicMetadata: {
-        clave_empleado?: string;
-        cargo: string;
-        carrera: string;
-        matricula?: string;
-        role: string;
-    };
-}
 
 export function useBusqueda(setFormData: (value: UsuarioJefeFile) => void) {
     const [search, setSearch] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [usuariosFiltrados, setUsuariosFiltrados] = useState<UsuarioClerkProps[]>([]);
-    const [eliminar, setEliminar] = useState<UsuarioJefe>({
+    const [FormDataEliminar, setFormDataEliminar] = useState<UsuarioJefe>({
         clave_usuario: "",
         nombre_usuario: "",
         apellidos_usuario: "",
@@ -92,14 +79,14 @@ export function useBusqueda(setFormData: (value: UsuarioJefeFile) => void) {
         setCurrentPage(numero);
     };
 
-    const handleSeleccionarUsuario = (usuario: (typeof UsuariosMock)[0]) => {
+    const handleSeleccionarUsuarioModificar = (usuario: UsuarioClerkProps) => {
         setFormData({
-            clave_usuario: usuario.clave,
-            nombre_usuario: usuario.nombre,
-            apellidos_usuario: usuario.apellidos,
-            cargo_usuario: usuario.cargo,
-            carrera: usuario.carrera,
-            correo_usuario: usuario.correo,
+            clave_usuario: usuario.publicMetadata.clave_empleado || "",
+            nombre_usuario: usuario.firstName,
+            apellidos_usuario: usuario.lastName,
+            cargo_usuario: usuario.publicMetadata.cargo,
+            carrera: usuario.publicMetadata.carrera,
+            correo_usuario: usuario.emailAddresses[0]?.emailAddress,
             file: null,
         });
         setSearch("");
@@ -116,7 +103,7 @@ export function useBusqueda(setFormData: (value: UsuarioJefeFile) => void) {
         role
     }: UsuarioJefe) => {
         console.log(role)
-        setEliminar({
+        setFormDataEliminar({
             clave_usuario,
             nombre_usuario,
             apellidos_usuario,
@@ -154,9 +141,9 @@ export function useBusqueda(setFormData: (value: UsuarioJefeFile) => void) {
         resultadosVisibles,
         handleChange,
         handlePageChange,
-        handleSeleccionarUsuario,
+        handleSeleccionarUsuarioModificar,
         handleSeleccionarUsuarioAEliminar,
-        eliminar,
+        FormDataEliminar,
         handleEliminarJefeCarrera,
     };
 }
