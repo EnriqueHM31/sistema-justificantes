@@ -11,11 +11,11 @@ import FormularioJefe from "@/pages/Administrador/components/Formulario";
 
 export default function Añadir() {
 
-    const { formData, inputValidity, capitalizarNombre, handleInputChange, handleCarreraChange } = useFormularioJefe();
+    const { formDataRegistro, inputValidity, capitalizarNombre, handleInputChange, handleCarreraChange, setFormDataRegistro } = useFormularioJefe();
 
     const { datosArchivo, inputFileRef, handleClear, setDatosArchivo } = useArchivoCSV();
 
-    const { handleModalConfirmacionRegistro, handleModalCancelarRegistro, handleModalConfirmacionDocumento, handleModalCancelarDocumento, handleBDDocumentoCSV, mostrarModalRegistrar, handleinsertarRegistro } = useModales();
+    const { handleModalConfirmacionRegistro, handleModalCancelarRegistro, handleModalConfirmacionDocumento, handleModalCancelarDocumento, handleBDDocumentoCSV, mostrarModalRegistrar, handleinsertarRegistro } = useModales({ setFormDataRegistro });
 
 
     return (
@@ -25,7 +25,8 @@ export default function Añadir() {
                     title="¿Realmente quieres registrar el usuario?"
                     message="Esta acción no se puede deshacer"
                     handleClickModalClose={handleModalCancelarRegistro}
-                    confirmarCambio={() => handleinsertarRegistro({ formData })}
+                    confirmarCambio={() => handleinsertarRegistro({ formDataRegistro })}
+
 
 
                 />
@@ -43,7 +44,7 @@ export default function Añadir() {
                         />
                     </div>
 
-                    <FormularioJefe formData={formData} handleInputChange={handleInputChange} handleCarreraChange={handleCarreraChange} inputValidity={inputValidity} />
+                    <FormularioJefe formData={formDataRegistro} handleInputChange={handleInputChange} handleCarreraChange={handleCarreraChange} inputValidity={inputValidity} />
                 </div>
 
                 <div className="flex-3 relative overflow-x-auto flex gap-4 flex-col">
@@ -72,8 +73,8 @@ export default function Añadir() {
                         </>
                     ) : (
                         <Previsualizacion
-                            usuario={formData}
-                            onConfirmar={() => handleModalConfirmacionRegistro({ formData })}
+                            usuario={formDataRegistro}
+                            onConfirmar={() => handleModalConfirmacionRegistro({ formDataRegistro })}
                             capitalizarNombre={capitalizarNombre}
                         />
                     )}
