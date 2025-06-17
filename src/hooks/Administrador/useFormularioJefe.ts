@@ -1,16 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { capitalizarNombre, generarCorreoJefeCarrera } from "@/assets/ts/Administrador/Registrar";
-import { type UsuarioJefe } from "@/types";
+import { useFormData } from "@/store/dataJefeCarrera";
 
 export function useFormularioJefe() {
-    const [formDataRegistro, setFormDataRegistro] = useState<UsuarioJefe>({
-        clave_usuario: "",
-        nombre_usuario: "",
-        apellidos_usuario: "",
-        cargo_usuario: "Jefe de Carrera",
-        correo_usuario: "",
-        carrera: "",
-    });
+    const { formData, updateField } = useFormData();
 
     const [inputValidity, setInputValidity] = useState<{ [key: string]: boolean | null }>({
         clave_usuario: null,
@@ -19,52 +12,78 @@ export function useFormularioJefe() {
         correo_usuario: null,
     });
 
+    useEffect(() => {
+        // Si se limpió el formulario, reinicia la validación
+        const isReset =
+            formData.publicMetadata.clave_empleado === "" &&
+            formData.firstName === "" &&
+            formData.lastName === "" &&
+            (formData.emailAddresses[0]?.emailAddress || "") === "";
+
+        if (isReset) {
+            setInputValidity({
+                clave_usuario: null,
+                nombre_usuario: null,
+                apellidos_usuario: null,
+                correo_usuario: null,
+            });
+        }
+    }, [formData]);
+
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, pattern } = e.target;
 
         const valorProcesado =
-            name === "nombre_usuario" || name === "apellidos_usuario"
+            name === "firstName" || name === "lastName"
                 ? capitalizarNombre(value)
                 : value;
 
-        setFormDataRegistro(prev => {
-            const updated = { ...prev, [name]: valorProcesado };
-
-            if (name === "nombre_usuario" || name === "apellidos_usuario") {
-                const correo = generarCorreoJefeCarrera(
-                    name === "nombre_usuario" ? valorProcesado : updated.nombre_usuario,
-                    name === "apellidos_usuario" ? valorProcesado : updated.apellidos_usuario
-                );
-                updated.correo_usuario = correo;
-
-                const correoInput = document.getElementById("correo_usuario") as HTMLInputElement | null;
-                if (correoInput) correoInput.value = correo;
-
-                const correoPattern = /^[a-zA-Z]+@huatusco\.tecnm\.mx$/;
-                setInputValidity(prev => ({ ...prev, correo_usuario: correoPattern.test(correo) }));
-            }
-
-            return updated;
-        });
+        updateField(name, valorProcesado);
 
         if (value === "") {
-            setInputValidity(prev => ({ ...prev, [name]: null }));
+            setInputValidity((prev) => ({ ...prev, [name]: null }));
         } else if (pattern) {
             const regex = new RegExp(pattern);
-            setInputValidity(prev => ({ ...prev, [name]: regex.test(valorProcesado) }));
+            setInputValidity((prev) => ({ ...prev, [name]: regex.test(valorProcesado) }));
+        }
+
+        if (name === "firstName" || name === "lastName") {
+            const formData = useFormData.getState().formData;
+            const correo = generarCorreoJefeCarrera(
+                name === "firstName" ? valorProcesado : formData.firstName,
+                name === "lastName" ? valorProcesado : formData.lastName
+            );
+
+            updateField("emailAddresses", correo);
+
+            const correoPattern = /^[a-zA-Z]+@huatusco\.tecnm\.mx$/;
+            setInputValidity((prev) => ({
+                ...prev,
+                correo_usuario: correoPattern.test(correo)
+            }));
+        }
+
+        if (name === "emailAddresses") {
+            const correo = value as string;
+            const correoPattern = /^[a-zA-Z]+@huatusco\.tecnm\.mx$/;
+            setInputValidity((prev) => ({
+                ...prev,
+                correo_usuario: correoPattern.test(correo)
+            }));
         }
     };
 
+
     const handleCarreraChange = (value: string) => {
-        setFormDataRegistro(prev => ({ ...prev, carrera: value }));
+        updateField("carrera", value);
     };
 
     return {
-        formDataRegistro,
+        formData,
         handleInputChange,
         handleCarreraChange,
         inputValidity,
         capitalizarNombre,
-        setFormDataRegistro,
     };
 }
