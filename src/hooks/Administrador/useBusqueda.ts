@@ -114,7 +114,10 @@ export function useBusqueda({ setFormDataRegistro }: { setFormDataRegistro: Reac
     };
 
     const handleEliminarJefeCarrera = async ({ email }: { email: string }) => {
+        if (!email) return toast.error("Debes seleccionar un usuario");
+        const toastId = toast.loading("Eliminando usuario...");
         try {
+
             const res = await fetch(`${import.meta.env.VITE_API_URL}/eliminar/jefescarrera`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -123,12 +126,18 @@ export function useBusqueda({ setFormDataRegistro }: { setFormDataRegistro: Reac
 
             const data = await res.json();
             if (res.ok && data.success) {
-                toast.success(data.message);
+                toast.success(data.message, {
+                    id: toastId,
+                });
             } else {
-                toast.error(data.message);
+                toast.error(data.message, {
+                    id: toastId,
+                });
             }
         } catch (error) {
-            toast.error("Error al eliminar el usuario");
+            toast.error("Error al eliminar el usuario", {
+                id: toastId,
+            });
         } finally {
             setFormDataEliminar({
                 clave_usuario: "",
