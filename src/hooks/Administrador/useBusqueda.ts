@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import { type UsuarioJefe, type UsuarioJefeFile } from "@/types";
+import { type UsuarioJefe } from "@/types";
 import { toast } from "sonner";
 import { type UsuarioClerkProps } from "@/types";
 
 
-export function useBusqueda(setFormData: (value: UsuarioJefeFile) => void) {
+export function useBusqueda({ setFormDataRegistro }: { setFormDataRegistro: React.Dispatch<React.SetStateAction<UsuarioJefe>> }) {
     const [search, setSearch] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [usuariosFiltrados, setUsuariosFiltrados] = useState<UsuarioClerkProps[]>([]);
@@ -80,14 +80,13 @@ export function useBusqueda(setFormData: (value: UsuarioJefeFile) => void) {
     };
 
     const handleSeleccionarUsuarioModificar = (usuario: UsuarioClerkProps) => {
-        setFormData({
+        setFormDataRegistro({
             clave_usuario: usuario.publicMetadata.clave_empleado || "",
             nombre_usuario: usuario.firstName,
             apellidos_usuario: usuario.lastName,
             cargo_usuario: usuario.publicMetadata.cargo,
             carrera: usuario.publicMetadata.carrera,
             correo_usuario: usuario.emailAddresses[0]?.emailAddress,
-            file: null,
         });
         setSearch("");
         setCurrentPage(1);
@@ -130,6 +129,17 @@ export function useBusqueda(setFormData: (value: UsuarioJefeFile) => void) {
             }
         } catch (error) {
             toast.error("Error al eliminar el usuario");
+        } finally {
+            setFormDataEliminar({
+                clave_usuario: "",
+                nombre_usuario: "",
+                apellidos_usuario: "",
+                cargo_usuario: "Jefe de Carrera",
+                carrera: "",
+                correo_usuario: "",
+                role: ""
+            });
+            setSearch("");
         }
     };
 
