@@ -4,9 +4,9 @@ import FormularioJefe from "@/pages/Administrador/components/Formulario";
 import { useBusqueda } from "@/hooks/Administrador/useBusqueda";
 
 export default function Modificar() {
-    const { formData, inputValidity, handleInputChange, handleCarreraChange, setFormData, } = useFormularioJefe();
+    const { formDataRegistro, inputValidity, handleInputChange, handleCarreraChange, setFormDataRegistro, } = useFormularioJefe();
 
-    const { search, currentPage, resultadosFiltrados, totalPaginas, resultadosVisibles, handleChange, handlePageChange, handleSeleccionarUsuarioModificar } = useBusqueda(setFormData);
+    const { search, currentPage, resultadosFiltrados, totalPaginas, resultadosVisibles, handleChange, handlePageChange, handleSeleccionarUsuarioModificar } = useBusqueda({ setFormDataRegistro });
     return (
         <>
             <Navegacion />
@@ -15,7 +15,7 @@ export default function Modificar() {
                 <div className="flex-2 flex gap-5 flex-col xl:order-1 order-2">
                     <h2 className="text-3xl font-bold">Modificar usuario</h2>
                     <FormularioJefe
-                        formData={formData}
+                        formData={formDataRegistro}
                         handleInputChange={handleInputChange}
                         handleCarreraChange={handleCarreraChange}
                         inputValidity={inputValidity}
