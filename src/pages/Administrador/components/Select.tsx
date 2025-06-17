@@ -4,13 +4,13 @@ import Select from '@mui/material/Select';
 import { useFileCSV } from '@/hooks/Administrador/UseFileCSV';
 import { type SelectLabelsFileCSVProps } from '@/types';
 
-export default function SelectLabels({ items, handleChange }: SelectLabelsFileCSVProps) {
+export default function SelectLabels({ items, handleChange, carreravalue }: SelectLabelsFileCSVProps) {
     const { value, handleSelectChange } = useFileCSV({ handleChange });
 
     return (
         <FormControl sx={{ minWidth: 120, width: '100%' }}>
             <Select
-                value={value}
+                value={carreravalue || value}
                 name='carreras'
                 onChange={handleSelectChange}
                 displayEmpty
